@@ -137,11 +137,10 @@ export default function Events() {
                 )}
             </div>
 
-            {/* Booking Modal */}
             {bookingEvent && (
-                <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(8px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 1, transition: 'opacity 0.3s' }}>
-                    <div className="glass" style={{ width: '100%', maxWidth: 480, padding: 32, position: 'relative' }}>
-                        <button onClick={() => setBookingEvent(null)} style={{ position: 'absolute', top: 16, right: 16, background: 'transparent', border: 'none', color: '#fff', fontSize: '1.5rem', cursor: 'pointer' }}>&times;</button>
+                <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(8px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 1, transition: 'opacity 0.3s', padding: 16 }}>
+                    <div className="glass" style={{ width: '100%', maxWidth: 480, padding: 24, position: 'relative' }}>
+                        <button onClick={() => setBookingEvent(null)} style={{ position: 'absolute', top: 12, right: 12, background: 'transparent', border: 'none', color: '#fff', fontSize: '1.5rem', cursor: 'pointer', padding: 4 }}>&times;</button>
 
                         <h2 style={{ marginBottom: 8 }}>Book Tickets</h2>
                         <h4 style={{ color: 'var(--gold)', marginBottom: 24 }}>{bookingEvent.title}</h4>
@@ -191,12 +190,12 @@ export default function Events() {
                                     </>
                                 )}
 
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 32, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                                    <div>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginTop: 32, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                         <p style={{ fontFamily: 'DM Sans', fontSize: '.85rem', color: 'var(--muted)' }}>Total Amount</p>
                                         <p style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--gold)' }}>₹{(bookingEvent.ticket_price * ticketCount).toFixed(2)}</p>
                                     </div>
-                                    <button onClick={confirmBooking} disabled={isSubmitting} className="btn btn-primary">
+                                    <button onClick={confirmBooking} disabled={isSubmitting} className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
                                         {isSubmitting ? 'Processing...' : 'Pay & Book'}
                                     </button>
                                 </div>

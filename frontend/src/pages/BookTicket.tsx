@@ -75,17 +75,17 @@ export default function BookTicket() {
                     <p style={{ marginTop: 8 }}>Reserve your table at Spice Garden, Gokak</p>
                 </div>
 
-                <div className="reveal" style={{ display: 'flex', justifyContent: 'center', gap: 8, marginBottom: 40 }}>
+                <div className="reveal" style={{ display: 'flex', justifyContent: 'center', gap: 6, marginBottom: 40, flexWrap: 'wrap' }}>
                     {STEPS.map((s, i) => (
-                        <div key={s} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <div key={s} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                             <div style={{
                                 width: 32, height: 32, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
                                 background: i <= step ? 'linear-gradient(135deg, var(--gold), var(--gold-light))' : 'var(--surface2)',
                                 color: i <= step ? '#0D1A0F' : 'var(--muted)',
-                                fontFamily: 'DM Sans', fontSize: '.8rem', fontWeight: 700, transition: 'all .4s var(--ease)'
+                                fontFamily: 'DM Sans', fontSize: '.8rem', fontWeight: 700, transition: 'all .4s var(--ease)', flexShrink: 0
                             }}>{i + 1}</div>
-                            <span style={{ fontFamily: 'DM Sans', fontSize: '.75rem', color: i <= step ? 'var(--gold)' : 'var(--muted)' }}>{s}</span>
-                            {i < STEPS.length - 1 && <div style={{ width: 32, height: 1, background: i < step ? 'var(--gold)' : 'var(--surface2)' }} />}
+                            {i === step && <span style={{ fontFamily: 'DM Sans', fontSize: '.75rem', color: 'var(--gold)' }}>{s}</span>}
+                            {i < STEPS.length - 1 && <div style={{ width: 16, height: 1, background: i < step ? 'var(--gold)' : 'var(--surface2)' }} />}
                         </div>
                     ))}
                 </div>
@@ -155,11 +155,11 @@ export default function BookTicket() {
                         </div>
                     )}
 
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 32 }}>
-                        {step > 0 ? <button onClick={() => setStep(step - 1)} className="btn btn-outline">← Back</button> : <div />}
+                    <div style={{ display: 'flex', flexDirection: 'column-reverse', gap: 16, marginTop: 32 }}>
+                        {step > 0 ? <button onClick={() => setStep(step - 1)} className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }}>← Back</button> : <div />}
                         {step < 3
-                            ? <button onClick={nextStep} className="btn btn-gold">Next →</button>
-                            : <button onClick={handleSubmit} className="btn btn-gold">Confirm Reservation ✓</button>
+                            ? <button onClick={nextStep} className="btn btn-gold" style={{ width: '100%', justifyContent: 'center' }}>Next →</button>
+                            : <button onClick={handleSubmit} className="btn btn-gold" style={{ width: '100%', justifyContent: 'center' }}>Confirm Reservation ✓</button>
                         }
                     </div>
                 </div>

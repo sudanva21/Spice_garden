@@ -84,7 +84,7 @@ export default function Home() {
                         <img
                             src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800"
                             alt="Spice Garden Restaurant Interior"
-                            style={{ width: '100%', height: 440, objectFit: 'cover', animation: 'hero-drift 20s ease-in-out infinite' }}
+                            style={{ width: '100%', aspectRatio: '16/10', minHeight: 250, objectFit: 'cover', animation: 'hero-drift 20s ease-in-out infinite', display: 'block' }}
                         />
                         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(13,26,15,0.3), transparent 40%)', pointerEvents: 'none' }} />
                     </div>
@@ -174,12 +174,12 @@ export default function Home() {
                         {subscribed ? (
                             <p style={{ color: 'var(--green)', fontFamily: 'DM Sans' }}>✓ You're subscribed! Thank you.</p>
                         ) : (
-                            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
                                 <input
                                     value={email} onChange={e => setEmail(e.target.value)}
                                     placeholder="Your email address"
                                     style={{
-                                        flex: 1, background: 'var(--surface2)', border: '1px solid rgba(212,168,67,0.15)',
+                                        flex: '1 1 250px', background: 'var(--surface2)', border: '1px solid rgba(212,168,67,0.15)',
                                         borderRadius: 28, padding: '14px 22px', color: 'var(--text)', fontFamily: 'DM Sans',
                                         fontSize: '.95rem', outline: 'none'
                                     }}
@@ -187,6 +187,7 @@ export default function Home() {
                                 <button
                                     onClick={() => subscribeNewsletter(email).then(() => setSubscribed(true)).catch(() => setSubscribed(true))}
                                     className="btn btn-gold"
+                                    style={{ flex: '1 1 auto', justifyContent: 'center' }}
                                 >Subscribe</button>
                             </div>
                         )}

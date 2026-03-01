@@ -183,9 +183,9 @@ export default function Order() {
                             <FieldError field="pincode" />
                         </div>
 
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 24 }}>
-                            <button onClick={() => setStep(0)} className="btn btn-outline">← Back</button>
-                            <button onClick={() => { if (validate()) setStep(2); }} className="btn btn-gold">Choose Payment →</button>
+                        <div style={{ display: 'flex', flexDirection: 'column-reverse', gap: '16px', marginTop: 24 }}>
+                            <button onClick={() => setStep(0)} className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }}>← Back</button>
+                            <button onClick={() => { if (validate()) setStep(2); }} className="btn btn-gold" style={{ width: '100%', justifyContent: 'center' }}>Choose Payment →</button>
                         </div>
                     </div>
                 )}
@@ -224,14 +224,14 @@ export default function Order() {
                         {form.payment === 'upi' && (
                             <div style={{ marginTop: 20, textAlign: 'center', background: '#fff', padding: 20, borderRadius: 12, color: '#000' }}>
                                 <p style={{ fontWeight: 'bold', marginBottom: 12 }}>Scan to Pay ₹{total}</p>
-                                <img src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=spicegarden@upi&pn=Spice%20Garden&am=${total}&cu=INR`} alt="UPI QR" style={{ width: 150, height: 150 }} />
+                                <img src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=spicegarden@upi&pn=Spice%20Garden&am=${total}&cu=INR`} alt="UPI QR" style={{ width: '100%', maxWidth: 150, height: 'auto', aspectRatio: '1/1' }} />
                                 <p style={{ fontSize: '.8rem', color: '#666', marginTop: 12 }}>Use any UPI app (GPay, PhonePe, Paytm)</p>
                             </div>
                         )}
 
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 24 }}>
-                            <button onClick={() => setStep(1)} className="btn btn-outline">← Back</button>
-                            <button onClick={placeOrder} className="btn btn-gold">Place Order ✓</button>
+                        <div style={{ display: 'flex', flexDirection: 'column-reverse', gap: '16px', marginTop: 24 }}>
+                            <button onClick={() => setStep(1)} className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }}>← Back</button>
+                            <button onClick={placeOrder} className="btn btn-gold" style={{ width: '100%', justifyContent: 'center' }}>Place Order ✓</button>
                         </div>
                     </div>
                 )}

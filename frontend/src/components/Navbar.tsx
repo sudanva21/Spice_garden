@@ -55,19 +55,21 @@ export default function Navbar() {
                 <button className={`hamburger${mobileOpen ? ' open' : ''}`} onClick={() => setMobileOpen(!mobileOpen)}>
                     <span /><span /><span />
                 </button>
-                <ul className={`navbar-links${mobileOpen ? ' mobile-open' : ''}`}>
+                <div className={`navbar-links${mobileOpen ? ' mobile-open' : ''}`} onClick={() => setMobileOpen(false)}>
                     {NAV_LINKS.map(l => (
-                        <li key={l.path}>
+                        <li key={l.path} style={{ listStyle: 'none', width: '100%', textAlign: 'center' }}>
                             <Link to={l.path} onClick={() => setMobileOpen(false)} style={{ color: location.pathname === l.path ? 'var(--gold)' : undefined }}>
                                 {l.label}
                             </Link>
                         </li>
                     ))}
                     {/* Show auth actions inside mobile menu */}
-                    <li className="mobile-only-actions">
-                        <AuthActions mobile />
+                    <li className="mobile-only-actions" style={{ listStyle: 'none', width: '100%' }}>
+                        <div onClick={(e) => e.stopPropagation()}>
+                            <AuthActions mobile />
+                        </div>
                     </li>
-                </ul>
+                </div>
                 <div className="navbar-actions">
                     <AuthActions />
                 </div>

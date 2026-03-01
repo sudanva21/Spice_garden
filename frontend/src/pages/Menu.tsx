@@ -133,20 +133,19 @@ export default function Menu() {
 
                 {filtered.length === 0 && <p style={{ textAlign: 'center', color: 'var(--muted)', padding: '60px 0' }}>No items in this category yet.</p>}
 
-                {/* Floating Cart Bar (Swiggy Style) */}
                 {cartCount > 0 && (
-                    <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, padding: '20px', background: 'linear-gradient(to top, rgba(13,26,15,1) 40%, rgba(13,26,15,0))', zIndex: 100, display: 'flex', justifyContent: 'center', pointerEvents: 'none' }}>
+                    <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, padding: '16px', background: 'linear-gradient(to top, rgba(13,26,15,1) 40%, rgba(13,26,15,0))', zIndex: 100, display: 'flex', justifyContent: 'center', pointerEvents: 'none' }}>
                         <Link to="/order" style={{
-                            width: '100%', maxWidth: 800, padding: '16px 24px', borderRadius: 16,
+                            width: '100%', maxWidth: 800, padding: '14px 20px', borderRadius: 16,
                             background: '#27ae60', color: 'white', textDecoration: 'none',
                             display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                             boxShadow: '0 8px 32px rgba(39, 174, 96, 0.3)', animation: 'fadeInUp 0.3s ease',
                             pointerEvents: 'auto'
                         }}>
-                            <div style={{ fontFamily: 'DM Sans', fontWeight: 600, fontSize: '.9rem' }}>
+                            <div style={{ fontFamily: 'DM Sans', fontWeight: 600, fontSize: '.85rem' }}>
                                 {cartCount} ITEM{cartCount > 1 ? 'S' : ''} &nbsp;|&nbsp; ₹{cart.reduce((s, c) => s + (c.price * c.qty), 0)}
                             </div>
-                            <div style={{ fontFamily: 'DM Sans', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6, fontSize: '.95rem' }}>
+                            <div style={{ fontFamily: 'DM Sans', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6, fontSize: '.85rem' }}>
                                 View Cart ➔
                             </div>
                         </Link>
