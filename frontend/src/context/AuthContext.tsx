@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { supabase } from '../lib/supabase';
 
 interface User {
     id: string;
@@ -36,6 +37,54 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 console.error('Failed to parse user session');
             }
         }
+
+        const syncGoogleUser = async (session: any) => {
+            try {
+                const API = import.meta.env.VITE_API_URL || '/api/v1';
+                // Sync Google account with our custom Postgres users table
+                const res = await fetch(`${API}/auth/sync`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${session.access_token}`
+                    },
+                    body: JSON.stringify({
+                        email: session.user.email,
+                        name: session.user.user_metadata?.full_name || 'Google User'
+                    })
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    login(data.user, data.token);
+                    closeAuthModal();
+                } else {
+                    const data = await res.json();
+                    console.error('Sync failed:', data.error);
+                    alert(`Login Sync Failed: ${data.error}`);
+                }
+            } catch (err) {
+                console.error('Failed to sync Google user', err);
+            }
+        };
+
+        // Listen for Supabase OAuth redirects / sign-ins
+        const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
+            if (event === 'SIGNED_IN' && session) {
+                await syncGoogleUser(session);
+            } else if (event === 'INITIAL_SESSION' && session) {
+                const savedUser = localStorage.getItem('spice_garden_user');
+                if (!savedUser) {
+                    await syncGoogleUser(session);
+                }
+            } else if (event === 'SIGNED_OUT') {
+                logout();
+            }
+        });
+
+        return () => {
+            authListener?.subscription.unsubscribe();
+        };
     }, []);
 
     const login = (userData: User, tokenStr: string) => {

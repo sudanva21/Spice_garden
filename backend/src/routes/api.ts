@@ -81,6 +81,7 @@ router.get('/stats', stats.getHomeStats);
 // Auth & Users
 router.post('/auth/request-otp', auth.requestOtp);
 router.post('/auth/verify-otp', auth.verifyOtp);
+router.post('/auth/sync', auth.syncUser);
 router.get('/auth/users/:userId', auth.getUserProfile);
 
 // Event Bookings

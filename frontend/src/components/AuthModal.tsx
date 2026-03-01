@@ -1,61 +1,28 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { supabase } from '../lib/supabase';
 
 export default function AuthModal() {
-    const { isAuthModalOpen, closeAuthModal, login } = useAuth();
+    const { isAuthModalOpen, closeAuthModal } = useAuth();
 
-    const [step, setStep] = useState<'phone' | 'otp'>('phone');
-    const [phone, setPhone] = useState('');
-    const [name, setName] = useState('');
-    const [otp, setOtp] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
     if (!isAuthModalOpen) return null;
 
-    const API = import.meta.env.VITE_API_URL || '/api/v1';
-
-    const handleRequestOtp = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleGoogleSignIn = async () => {
         setError('');
         setLoading(true);
         try {
-            const res = await fetch(`${API}/auth/request-otp`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ phone })
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: {
+                    redirectTo: window.location.origin
+                }
             });
-            if (!res.ok) throw new Error('Failed to request OTP');
-            setStep('otp');
+            if (error) throw error;
         } catch (err: any) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const handleVerifyOtp = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError('');
-        setLoading(true);
-        try {
-            const res = await fetch(`${API}/auth/verify-otp`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ phone, otp, name })
-            });
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.error || 'Failed to verify OTP');
-
-            login(data.user, data.token);
-            closeAuthModal();
-            setStep('phone');
-            setOtp('');
-            setPhone('');
-            setName('');
-        } catch (err: any) {
-            setError(err.message);
-        } finally {
+            setError(err.message || 'Failed to sign in with Google');
             setLoading(false);
         }
     };
@@ -77,67 +44,42 @@ export default function AuthModal() {
                     style={{ position: 'absolute', top: '16px', right: '16px', background: 'transparent', color: 'var(--gold)', border: 'none', fontSize: '1.5rem', cursor: 'pointer' }}
                 >×</button>
 
-                <h2 style={{ color: 'var(--gold)', marginBottom: '8px', fontFamily: '"Playfair Display", serif' }}>
-                    {step === 'phone' ? 'Login or Sign up' : 'Enter OTP'}
+                <h2 style={{ color: 'var(--gold)', marginBottom: '8px', fontFamily: '"Playfair Display", serif', textAlign: 'center' }}>
+                    Welcome to Spice Garden
                 </h2>
+                <p style={{ color: '#ccc', marginBottom: '32px', fontSize: '0.9rem', textAlign: 'center' }}>
+                    Sign in or create an account to manage your bookings and orders.
+                </p>
 
-                {step === 'phone' && (
-                    <form onSubmit={handleRequestOtp}>
-                        <p style={{ color: '#ccc', marginBottom: '24px', fontSize: '0.9rem' }}>
-                            We'll send you an OTP to verify your number
-                        </p>
-                        <input
-                            type="text"
-                            placeholder="Your Name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            className="form-control"
-                            style={{ padding: '12px', fontSize: '1rem', width: '100%', marginBottom: '16px', boxSizing: 'border-box' }}
-                            required
-                        />
-                        <input
-                            type="tel"
-                            placeholder="Phone Number (e.g. 9876543210)"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                            className="form-control"
-                            style={{ padding: '12px', fontSize: '1rem', width: '100%', marginBottom: '16px', boxSizing: 'border-box' }}
-                            required
-                        />
-                        {error && <p style={{ color: '#ff4d4f', fontSize: '0.9rem', marginBottom: '16px' }}>{error}</p>}
-                        <button type="submit" className="btn btn-gold" style={{ width: '100%', padding: '12px' }} disabled={loading}>
-                            {loading ? 'Sending...' : 'Continue'}
-                        </button>
-                    </form>
-                )}
+                {error && <p style={{ color: '#ff4d4f', fontSize: '0.9rem', marginBottom: '16px', textAlign: 'center' }}>{error}</p>}
 
-                {step === 'otp' && (
-                    <form onSubmit={handleVerifyOtp}>
-                        <p style={{ color: '#ccc', marginBottom: '24px', fontSize: '0.9rem' }}>
-                            Enter the 6-digit OTP sent to {phone}.
-                        </p>
-                        <input
-                            type="text"
-                            placeholder="OTP (e.g. 123456)"
-                            value={otp}
-                            onChange={(e) => setOtp(e.target.value)}
-                            className="form-control"
-                            style={{ padding: '12px', fontSize: '1rem', width: '100%', marginBottom: '16px', boxSizing: 'border-box' }}
-                            required
-                        />
-                        {error && <p style={{ color: '#ff4d4f', fontSize: '0.9rem', marginBottom: '16px', fontFamily: '"Playfair Display", serif' }}>{error}</p>}
-                        <button type="submit" className="btn btn-gold" style={{ width: '100%', padding: '12px' }} disabled={loading}>
-                            {loading ? 'Verifying...' : 'Verify & Proceed'}
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setStep('phone')}
-                            style={{ background: 'none', border: 'none', color: '#ccc', width: '100%', marginTop: '16px', cursor: 'pointer', textDecoration: 'underline' }}
-                        >
-                            Change Phone Number
-                        </button>
-                    </form>
-                )}
+                <button
+                    onClick={handleGoogleSignIn}
+                    className="btn"
+                    style={{
+                        width: '100%',
+                        padding: '12px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        gap: '12px',
+                        background: 'white',
+                        color: 'black',
+                        border: 'none',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        fontWeight: 'bold'
+                    }}
+                    disabled={loading}
+                >
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+                    </svg>
+                    {loading ? 'Redirecting...' : 'Sign in with Google'}
+                </button>
             </div>
         </div>
     );

@@ -82,34 +82,56 @@ export default function Admin() {
     };
 
     const saveMenuItem = async (item: any) => {
-        if (item.id) {
-            await axios.patch(`${API}/menu/${item.id}`, item);
-            setData({ ...data, menu: data.menu.map((m: any) => m.id === item.id ? item : m) });
-        } else {
-            const { data: d } = await axios.post(`${API}/menu`, item);
-            setData({ ...data, menu: [...data.menu, d] });
+        try {
+            const payload = { ...item };
+            delete payload.id;
+            if (item.id) {
+                await axios.patch(`${API}/menu/${item.id}`, payload);
+                setData({ ...data, menu: data.menu.map((m: any) => m.id === item.id ? item : m) });
+            } else {
+                const { data: d } = await axios.post(`${API}/menu`, payload);
+                setData({ ...data, menu: [...data.menu, d] });
+            }
+            setEditItem(null);
+            setNewItem(null);
+            fetchAll();
+        } catch (error: any) {
+            alert(error?.response?.data?.error || 'Failed to save menu item');
         }
-        setEditItem(null);
-        setNewItem(null);
-        fetchAll();
     };
 
     const deleteItem = async (endpoint: string, id: string, key: string) => {
         if (!confirm('Delete this item?')) return;
-        await axios.delete(`${API}/${endpoint}/${id}`);
-        setData({ ...data, [key]: data[key].filter((i: any) => i.id !== id) });
+        try {
+            await axios.delete(`${API}/${endpoint}/${id}`);
+            setData({ ...data, [key]: data[key].filter((i: any) => i.id !== id) });
+        } catch (error: any) {
+            alert(error?.response?.data?.error || 'Failed to delete item');
+        }
     };
 
     const saveBlog = async (post: any) => {
-        if (post.id) { await axios.patch(`${API}/blog/${post.id}`, post); }
-        else { await axios.post(`${API}/blog`, post); }
-        setEditItem(null); setNewItem(null); fetchAll();
+        try {
+            const payload = { ...post };
+            delete payload.id;
+            if (post.id) { await axios.patch(`${API}/blog/${post.id}`, payload); }
+            else { await axios.post(`${API}/blog`, payload); }
+            setEditItem(null); setNewItem(null); fetchAll();
+        } catch (error: any) {
+            alert(error?.response?.data?.error || 'Failed to save blog post');
+        }
     };
 
     const saveEvent = async (evt: any) => {
-        if (evt.id) { await axios.patch(`${API}/events/${evt.id}`, evt); }
-        else { await axios.post(`${API}/events`, evt); }
-        setEditItem(null); setNewItem(null); fetchAll();
+        try {
+            const payload = { ...evt };
+            delete payload.id;
+            if (evt.id) { await axios.patch(`${API}/events/${evt.id}`, payload); }
+            else { await axios.post(`${API}/events`, payload); }
+            setEditItem(null); setNewItem(null); fetchAll();
+        } catch (error: any) {
+            alert(error?.response?.data?.error || 'Failed to save event');
+        }
     };
 
     const Input = ({ label, value, onChange, type = 'text', ...props }: any) => (
@@ -309,9 +331,15 @@ export default function Admin() {
                                                 <Input label="Image URL" value={item.image_url} onChange={(v: string) => setItem({ ...item, image_url: v })} />
                                                 <div style={{ display: 'flex', gap: 8 }}>
                                                     <button onClick={async () => {
-                                                        if (item.id) await axios.patch(`${API}/gallery/${item.id}`, item);
-                                                        else await axios.post(`${API}/gallery`, item);
-                                                        setEditItem(null); setNewItem(null); fetchAll();
+                                                        try {
+                                                            const payload = { ...item };
+                                                            delete payload.id;
+                                                            if (item.id) await axios.patch(`${API}/gallery/${item.id}`, payload);
+                                                            else await axios.post(`${API}/gallery`, payload);
+                                                            setEditItem(null); setNewItem(null); fetchAll();
+                                                        } catch (error: any) {
+                                                            alert(error?.response?.data?.error || 'Failed to save photo');
+                                                        }
                                                     }} className="btn btn-gold">Save</button>
                                                     <button onClick={() => { setEditItem(null); setNewItem(null); }} className="btn btn-outline">Cancel</button>
                                                 </div>

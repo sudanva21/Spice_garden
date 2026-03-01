@@ -20,19 +20,18 @@ export const requestOtp = async (req: Request, res: Response) => {
         const expires = Date.now() + 5 * 60 * 1000; // 5 mins
         otpStore.set(phone, { otp, expires });
 
-        // If Twilio credentials exist, send real SMS. Otherwise, log it (fallback for dev without keys).
-        if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.env.TWILIO_PHONE_NUMBER) {
-            const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
-            await client.messages.create({
-                body: `Your Spice Garden login OTP is ${otp}. Valid for 5 minutes.`,
-                from: process.env.TWILIO_PHONE_NUMBER,
-                to: phone.startsWith('+') ? phone : `+91${phone.replace(/\D/g, '').substring(0, 10)}` // Assuming India prefix
-            });
-            res.status(200).json({ message: 'OTP sent via SMS successfully' });
-        } else {
-            console.log(`[DEV MODE] OTP for ${phone} is ${otp}`);
-            res.status(200).json({ message: 'OTP generated (Check server console for OTP since Twilio keys are missing)' });
+        if (!process.env.TWILIO_ACCOUNT_SID || !process.env.TWILIO_PHONE_NUMBER) {
+            return res.status(500).json({ error: 'Twilio credentials missing in server config' });
         }
+
+        const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+        await client.messages.create({
+            body: `Your Spice Garden login OTP is ${otp}. Valid for 5 minutes.`,
+            from: process.env.TWILIO_PHONE_NUMBER,
+            to: phone.startsWith('+') ? phone : `+91${phone.replace(/\D/g, '').substring(0, 10)}` // Assuming India prefix
+        });
+
+        res.status(200).json({ message: 'OTP sent via SMS successfully' });
 
     } catch (error: any) {
         console.error('Error requesting OTP:', error);
@@ -111,6 +110,74 @@ export const verifyOtp = async (req: Request, res: Response) => {
 
     } catch (error) {
         console.error('Error verifying OTP:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+export const syncUser = async (req: Request, res: Response) => {
+    try {
+        const { name, email } = req.body;
+        const authHeader = req.headers.authorization;
+        if (!authHeader) return res.status(401).json({ error: 'Missing token' });
+
+        const token = authHeader.split(' ')[1];
+
+        // Verify the token with Supabase Auth
+        const { data: { user: authUser }, error: authError } = await supabase.auth.getUser(token);
+        if (authError || !authUser) {
+            return res.status(401).json({ error: 'Invalid or expired Supabase token' });
+        }
+
+        // Google Auth gives us emails, usually no phone number
+        const userEmail = authUser.email || email;
+        if (!userEmail) {
+            return res.status(400).json({ error: 'Email is required for Google Auth' });
+        }
+
+        // Upsert the user based on email
+        let { data: user, error: fetchError } = await supabase
+            .from('users')
+            .select('*')
+            .eq('email', userEmail)
+            .single();
+
+        if (!user) {
+            const newUser = {
+                email: userEmail,
+                name: authUser.user_metadata?.full_name || name || 'Google Guest',
+                phone: `N/A-${userEmail}` // Must provide a UNIQUE string due to Postgres NOT NULL and UNIQUE constraints on 'phone'
+            };
+
+            const { data: createdUser, error: createError } = await supabase
+                .from('users')
+                .insert(newUser)
+                .select()
+                .single();
+
+            if (createError) throw createError;
+            user = createdUser;
+        } else if (name || authUser.user_metadata?.full_name) {
+            const { data: updatedUser, error: updateError } = await supabase
+                .from('users')
+                .update({
+                    name: authUser.user_metadata?.full_name || name || user.name
+                })
+                .eq('email', userEmail)
+                .select()
+                .single();
+
+            if (updateError) throw updateError;
+            user = updatedUser;
+        }
+
+        res.status(200).json({
+            message: 'User synced successfully',
+            user,
+            token
+        });
+
+    } catch (error) {
+        console.error('Error syncing user:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 };
