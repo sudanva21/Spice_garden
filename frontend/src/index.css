@@ -47,7 +47,6 @@ h4 {
 
 h1 {
   font-size: clamp(2.3rem, 7vw, 5.5rem);
-  letter-spacing: -1px;
 }
 
 h2 {
@@ -1066,6 +1065,13 @@ body::before {
     height: 60px;
   }
 
+  .navbar.menu-open {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: transparent;
+    border-bottom: none;
+  }
+
   .navbar.scrolled {
     height: 56px;
   }
@@ -1081,7 +1087,10 @@ body::before {
     -webkit-backdrop-filter: blur(20px);
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 100px;
+    padding-bottom: 40px;
+    overflow-y: auto;
     gap: 24px;
     z-index: 100;
     opacity: 0;

@@ -50,7 +50,7 @@ export default function Navbar() {
     return (
         <>
             <div className="progress-bar" style={{ width: `${scrollProgress}%` }} />
-            <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
+            <nav className={`navbar${scrolled ? ' scrolled' : ''}${mobileOpen ? ' menu-open' : ''}`}>
                 <Link to="/" className="navbar-logo">SPICE<br />GARDEN</Link>
                 <button className={`hamburger${mobileOpen ? ' open' : ''}`} onClick={() => setMobileOpen(!mobileOpen)}>
                     <span /><span /><span />
