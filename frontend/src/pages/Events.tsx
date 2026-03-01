@@ -104,7 +104,7 @@ export default function Events() {
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
                     {events.map((ev, i) => (
-                        <div key={ev.id} className="glass" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 24, alignItems: 'center', transitionDelay: `${i * .1}s` }}>
+                        <div key={ev.id} className="glass" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: 24, alignItems: 'center', transitionDelay: `${i * .1}s` }}>
                             <div>
                                 <p style={{ fontFamily: 'DM Sans', fontSize: '.75rem', letterSpacing: '1px', color: 'var(--gold)', marginBottom: 8 }}>
                                     {ev.event_type?.toUpperCase() || 'EVENT'}

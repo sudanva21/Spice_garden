@@ -84,7 +84,7 @@ export default function Menu() {
                 </div>
 
                 {/* Menu Grid */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 20 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))', gap: 20 }}>
                     {filtered.map((item, i) => (
                         <div key={item.id} className="glass" style={{ transitionDelay: `${(i % 8) * .05}s`, padding: 0, overflow: 'hidden' }}>
                             {item.image_url && (

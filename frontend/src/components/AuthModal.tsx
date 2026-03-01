@@ -35,19 +35,20 @@ export default function AuthModal() {
             zIndex: 9999
         }}>
             <div style={{
-                backgroundColor: '#1E231F', padding: '32px', borderRadius: '12px',
-                width: '100%', maxWidth: '400px', border: '1px solid var(--gold)',
-                position: 'relative'
+                backgroundColor: '#1E231F', padding: '24px', borderRadius: '12px',
+                width: '90%', maxWidth: '400px', border: '1px solid var(--gold)',
+                position: 'relative', boxSizing: 'border-box',
+                maxHeight: '90vh', overflowY: 'auto'
             }}>
                 <button
                     onClick={closeAuthModal}
                     style={{ position: 'absolute', top: '16px', right: '16px', background: 'transparent', color: 'var(--gold)', border: 'none', fontSize: '1.5rem', cursor: 'pointer' }}
                 >×</button>
 
-                <h2 style={{ color: 'var(--gold)', marginBottom: '8px', fontFamily: '"Playfair Display", serif', textAlign: 'center' }}>
+                <h2 style={{ color: 'var(--gold)', marginBottom: '8px', fontFamily: 'Cormorant Garamond, serif', textAlign: 'center', fontSize: '1.8rem' }}>
                     Welcome to Spice Garden
                 </h2>
-                <p style={{ color: '#ccc', marginBottom: '32px', fontSize: '0.9rem', textAlign: 'center' }}>
+                <p style={{ color: 'var(--muted)', marginBottom: '32px', fontSize: '0.95rem', fontFamily: 'DM Sans', textAlign: 'center' }}>
                     Sign in or create an account to manage your bookings and orders.
                 </p>
 

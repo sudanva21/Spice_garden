@@ -30,20 +30,20 @@ export default function Navbar() {
     }, []);
 
     const AuthActions = ({ mobile = false }: { mobile?: boolean }) => (
-        <div style={{ display: 'flex', alignItems: 'center', gap: mobile ? '16px' : '1rem', flexDirection: mobile ? 'column' : 'row' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: mobile ? '20px' : '1rem', flexDirection: mobile ? 'column' : 'row', width: '100%', justifyContent: 'center' }}>
             {user ? (
-                <Link to="/profile" onClick={() => setMobileOpen(false)} style={{ color: 'var(--gold)', fontWeight: 'bold', fontFamily: 'DM Sans' }}>
+                <Link to="/profile" onClick={() => setMobileOpen(false)} style={{ color: 'var(--gold)', fontWeight: 'bold', fontFamily: 'DM Sans', fontSize: mobile ? '1.15rem' : 'inherit' }}>
                     {user.name || 'Profile'}
                 </Link>
             ) : (
                 <button
                     onClick={() => { openAuthModal(); setMobileOpen(false); }}
-                    style={{ background: 'none', border: 'none', color: 'var(--text)', cursor: 'pointer', fontWeight: 'bold', fontFamily: 'DM Sans', fontSize: mobile ? '1rem' : 'inherit' }}
+                    style={{ background: 'none', border: 'none', color: 'var(--text)', cursor: 'pointer', fontWeight: 'bold', fontFamily: 'DM Sans', fontSize: mobile ? '1.15rem' : 'inherit' }}
                 >
                     Login
                 </button>
             )}
-            <Link to="/book" onClick={() => setMobileOpen(false)} className="btn btn-gold" style={{ padding: '10px 24px', fontSize: '.8rem' }}>Book a Table</Link>
+            <Link to="/book" onClick={() => setMobileOpen(false)} className="btn btn-gold" style={{ padding: '12px 28px', fontSize: '.85rem' }}>Book a Table</Link>
         </div>
     );
 
@@ -55,7 +55,7 @@ export default function Navbar() {
                 <button className={`hamburger${mobileOpen ? ' open' : ''}`} onClick={() => setMobileOpen(!mobileOpen)}>
                     <span /><span /><span />
                 </button>
-                <div className={`navbar-links${mobileOpen ? ' mobile-open' : ''}`} onClick={() => setMobileOpen(false)}>
+                <ul className={`navbar-links${mobileOpen ? ' mobile-open' : ''}`}>
                     {NAV_LINKS.map(l => (
                         <li key={l.path} style={{ listStyle: 'none', width: '100%', textAlign: 'center' }}>
                             <Link to={l.path} onClick={() => setMobileOpen(false)} style={{ color: location.pathname === l.path ? 'var(--gold)' : undefined }}>
@@ -65,11 +65,9 @@ export default function Navbar() {
                     ))}
                     {/* Show auth actions inside mobile menu */}
                     <li className="mobile-only-actions" style={{ listStyle: 'none', width: '100%' }}>
-                        <div onClick={(e) => e.stopPropagation()}>
-                            <AuthActions mobile />
-                        </div>
+                        <AuthActions mobile />
                     </li>
-                </div>
+                </ul>
                 <div className="navbar-actions">
                     <AuthActions />
                 </div>

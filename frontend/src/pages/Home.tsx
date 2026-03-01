@@ -66,7 +66,7 @@ export default function Home() {
 
             {/* ─── ABOUT ─── */}
             <section className="section">
-                <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 40, alignItems: 'center' }}>
+                <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: 40, alignItems: 'center' }}>
                     <div className="reveal-left">
                         <p className="section-eyebrow">ABOUT THE RESTAURANT</p>
                         <h2 style={{ marginBottom: 24 }}>Where Every Meal Is a Celebration</h2>
@@ -98,7 +98,7 @@ export default function Home() {
                         <p className="section-eyebrow">CHEF'S SPECIAL</p>
                         <h2>Popular Dishes</h2>
                     </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 28 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: 28 }}>
                         {[
                             { img: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400', name: 'Butter Chicken', price: '₹280', desc: 'Tender chicken in rich, creamy tomato-butter gravy' },
                             { img: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400', name: 'Paneer Tikka', price: '₹220', desc: 'Smoky tandoori-grilled cottage cheese with spices' },
@@ -149,7 +149,7 @@ export default function Home() {
             {nextEvent && (
                 <section className="section" style={{ background: 'var(--surface)' }}>
                     <div className="container">
-                        <div className="glass reveal-scale" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 24, alignItems: 'center', padding: 32 }}>
+                        <div className="glass reveal-scale" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: 24, alignItems: 'center', padding: 32 }}>
                             <div>
                                 <p className="section-eyebrow">UPCOMING EVENT</p>
                                 <h2 style={{ marginBottom: 12 }}>{nextEvent.title}</h2>
