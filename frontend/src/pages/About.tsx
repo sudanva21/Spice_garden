@@ -9,7 +9,7 @@ export default function About() {
             <div style={{ position: 'relative', height: 460, overflow: 'hidden' }}>
                 <img src="https://spicegarden.info/wp-content/uploads/2025/09/unnamed-2025-09-02T111529.241.webp" alt="Spice Garden Gokak" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 0 }} />
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(13,26,15,0.88) 40%, rgba(13,26,15,0.3))' }} />
-                <div style={{ position: 'absolute', top: '50%', left: 80, transform: 'translateY(-50)', maxWidth: 560 }}>
+                <div className="about-hero-content">
                     <p className="section-eyebrow" style={{ animation: 'fadeInUp .6s var(--ease) .2s both' }}>OUR STORY</p>
                     <h1 style={{ animation: 'fadeInUp .6s var(--ease) .4s both' }}>About Spice Garden</h1>
                 </div>
@@ -17,7 +17,7 @@ export default function About() {
 
             {/* Main Content */}
             <section className="section">
-                <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80 }}>
+                <div className="container about-main-grid">
                     <div className="reveal-left">
                         <h2 style={{ marginBottom: 24 }}>Welcome to Spice Garden</h2>
                         <p style={{ lineHeight: 1.9, marginBottom: 20 }}>
@@ -71,7 +71,7 @@ export default function About() {
                         <p className="section-eyebrow">WHY CHOOSE US</p>
                         <h2>The Spice Garden Difference</h2>
                     </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
+                    <div className="about-features-grid">
                         {[
                             { icon: '🌿', title: 'Natural Beauty', desc: 'Lush spice plantations with a fragrant ambiance' },
                             { icon: '📚', title: 'Educational Value', desc: 'Learn cultivation, uses, and history of spices' },

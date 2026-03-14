@@ -24,7 +24,7 @@ export default function Contact() {
                     <h1>Contact</h1>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60 }}>
+                <div className="contact-main-grid">
                     <form onSubmit={handleSubmit} className="reveal-left">
                         {sent ? (
                             <div className="glass" style={{ textAlign: 'center', padding: 48 }}>
