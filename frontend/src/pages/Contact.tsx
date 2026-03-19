@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { usePageReveal } from '../hooks/useReveal';
 import { submitContact } from '../api';
+import { SEOHead } from '../components/SEOHead';
 
 export default function Contact() {
     const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
@@ -18,6 +19,10 @@ export default function Contact() {
 
     return (
         <div className="page-enter" style={{ paddingTop: 120, minHeight: '100vh' }}>
+            <SEOHead 
+                title="Contact Us | Spice Garden Gokak" 
+                description="Get in touch with Spice Garden Gokak. Address, timings, and contact details."
+            />
             <div className="container">
                 <div className="reveal" style={{ textAlign: 'center', marginBottom: 60 }}>
                     <p className="section-eyebrow">GET IN TOUCH</p>
@@ -52,7 +57,10 @@ export default function Contact() {
                                     <span style={{ fontSize: '1.2rem' }}>📍</span>
                                     <div>
                                         <p style={{ fontFamily: 'DM Sans', fontSize: '.8rem', color: 'var(--muted)', marginBottom: 4 }}>ADDRESS</p>
-                                        <p style={{ fontFamily: 'DM Sans', fontWeight: 500 }}>Spice Garden, Gokak, Belagavi District, Karnataka 591307</p>
+                                        <p style={{ fontFamily: 'DM Sans', fontWeight: 500, marginBottom: 6 }}>Spice Garden, Gokak, Belagavi District, Karnataka 591307</p>
+                                        <a href="https://www.google.com/maps/place/spice+garden+gokak/data=!4m2!3m1!1s0x3bc0afe5a7f90475:0xad7ff480e09026e3?sa=X&ved=1t:242&ictx=111" target="_blank" rel="noreferrer" style={{ fontSize: '.85rem', color: 'var(--gold)', textDecoration: 'underline', fontFamily: 'DM Sans' }}>
+                                            Get Directions
+                                        </a>
                                     </div>
                                 </div>
                                 <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
@@ -75,7 +83,7 @@ export default function Contact() {
 
                         <div style={{ borderRadius: 'var(--radius)', overflow: 'hidden', height: 280 }}>
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30642.09!2d74.82!3d16.17!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc1097f0d81b84d%3A0x4c15b3ad1e4c8e00!2sGokak%2C+Karnataka!5e0!3m2!1sen!2sin!4v1705000000000"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15291.602!2d74.82!3d16.16!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc0afe5a7f90475%3A0xad7ff480e09026e3!2sspice%20garden%20gokak!5e0!3m2!1sen!2sin!4v1705000000000"
                                 width="100%" height="100%"
                                 style={{ border: 0 }}
                                 allowFullScreen

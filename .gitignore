@@ -6,3 +6,16 @@ dist/
 .vscode/
 .idea/
 *.tsbuildinfo
+
+# TypeScript build artifacts (should stay in dist/, not src/)
+*.d.ts.map
+*.d.ts
+*.js.map
+
+# Vite / build cache
+.vite/
+frontend/.vite/
+
+# OS files
+Thumbs.db
+desktop.ini

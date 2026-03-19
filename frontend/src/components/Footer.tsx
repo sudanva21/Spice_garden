@@ -42,7 +42,7 @@ export default function Footer() {
                         <h4 style={{ fontFamily: 'DM Sans', fontSize: '.75rem', letterSpacing: '2px', color: 'var(--muted)', marginBottom: 16 }}>LINKS</h4>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                             {FOOTER_LINKS.map(l => (
-                                <Link key={l.path} to={l.path} style={{ fontFamily: 'DM Sans', fontSize: '.9rem', color: 'var(--text)' }}>{l.label}</Link>
+                                <Link key={l.label} to={l.path} style={{ fontFamily: 'DM Sans', fontSize: '.9rem', color: 'var(--text)' }}>{l.label}</Link>
                             ))}
                         </div>
                     </div>
@@ -59,6 +59,10 @@ export default function Footer() {
                     <p style={{ fontFamily: 'DM Sans', fontSize: '.8rem', color: 'var(--muted)' }}>
                         © {new Date().getFullYear()} Spice Garden. All rights reserved.
                     </p>
+                    <div style={{ display: 'flex', gap: '16px' }}>
+                        <a href="https://www.instagram.com/spicegarrden?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noreferrer" style={{ color: 'var(--gold)', textDecoration: 'none', fontFamily: 'DM Sans', fontSize: '.9rem' }}>Instagram</a>
+                        <a href="https://www.facebook.com/spicegarrdengokak" target="_blank" rel="noreferrer" style={{ color: 'var(--gold)', textDecoration: 'none', fontFamily: 'DM Sans', fontSize: '.9rem' }}>Facebook</a>
+                    </div>
                     <p style={{ fontFamily: 'DM Sans', fontSize: '.8rem', color: 'var(--muted)' }}>
                         info@spicegarden.info
                     </p>

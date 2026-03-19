@@ -1510,4 +1510,124 @@ body::before {
   background: rgba(19, 35, 24, 0.8);
   box-shadow: 0 0 15px rgba(212, 168, 67, 0.1);
 }
+
+/* ═══════════════════════════════════ */
+/* ─── ADMIN PANEL ────────────── */
+/* ═══════════════════════════════════ */
+
+.admin-input,
+.admin-textarea,
+.admin-select {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(19, 35, 24, 0.6);
+  border: 1px solid rgba(212, 168, 67, 0.15);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: .9rem;
+  transition: all 0.3s var(--ease);
+  outline: none;
+}
+
+.admin-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.admin-input:focus,
+.admin-textarea:focus,
+.admin-select:focus {
+  border-color: var(--gold);
+  background: rgba(19, 35, 24, 0.85);
+  box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.08);
+}
+
+.admin-input::placeholder {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+.admin-label {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-card {
+  background: rgba(19, 35, 24, 0.45);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 168, 67, 0.1);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: all .3s var(--ease);
+}
+
+.admin-card:hover {
+  border-color: rgba(212, 168, 67, 0.2);
+}
+
+.admin-btn-sm {
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: 1px solid;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  transition: all .2s var(--ease);
+}
+
+.admin-btn-sm:hover {
+  transform: translateY(-1px);
+}
+
+.admin-btn-edit {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.admin-btn-edit:hover {
+  background: rgba(212, 168, 67, 0.1);
+}
+
+.admin-btn-delete {
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+.admin-btn-delete:hover {
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.admin-btn-success {
+  border-color: #27ae60;
+  color: #27ae60;
+}
+
+.admin-btn-success:hover {
+  background: rgba(39, 174, 96, 0.1);
+}
+
+.admin-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .85rem;
+  cursor: pointer;
+}
+
+.admin-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
 

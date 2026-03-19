@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { usePageReveal, useCounter } from '../hooks/useReveal';
-import { getEvents, subscribeNewsletter } from '../api';
+import { subscribeNewsletter } from '../api';
+import { SEOHead } from '../components/SEOHead';
+import { RestaurantSchema } from '../components/RestaurantSchema';
 
 export default function Home() {
-    const [nextEvent, setNextEvent] = useState<any>(null);
     const [email, setEmail] = useState('');
     const [subscribed, setSubscribed] = useState(false);
 
@@ -14,12 +15,13 @@ export default function Home() {
     const menuCount = useCounter(60, 2000);
     const ratingCount = useCounter(4, 1800);
 
-    useEffect(() => {
-        getEvents().then(r => { const e = r.data.events; if (e?.length) setNextEvent(e[0]); }).catch(() => { });
-    }, []);
-
     return (
         <div className="page-enter">
+            <SEOHead 
+                title="Spice Garden | Best Indian-Chinese Restaurant in Gokak, Karnataka" 
+                description="Experience the finest Indian & Chinese cuisine at Spice Garden. Fresh ingredients, rich spices, and a warm dining atmosphere await you in Gokak, Karnataka."
+            />
+            <RestaurantSchema />
             {/* ─── HERO ─── */}
             <section className="hero">
                 <div className="hero-bg" />
@@ -27,7 +29,7 @@ export default function Home() {
                 <div className="hero-content">
                     <p className="hero-eyebrow">GOKAK · KARNATAKA</p>
                     <h1 style={{ fontStyle: 'italic' }}>
-                        Authentic Flavors,<br />Unforgettable Moments
+                        Best Indian-Chinese Restaurant in Gokak
                     </h1>
                     <p>
                         Experience the finest Indian & Chinese cuisine at Spice Garden.
@@ -145,24 +147,21 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ─── NEXT EVENT ─── */}
-            {nextEvent && (
-                <section className="section" style={{ background: 'var(--surface)' }}>
-                    <div className="container">
-                        <div className="glass reveal-scale" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: 24, alignItems: 'center', padding: 32 }}>
-                            <div>
-                                <p className="section-eyebrow">UPCOMING EVENT</p>
-                                <h2 style={{ marginBottom: 12 }}>{nextEvent.title}</h2>
-                                <p style={{ marginBottom: 20 }}>{nextEvent.description}</p>
-                                <p style={{ fontFamily: 'DM Sans', fontSize: '.9rem', color: 'var(--muted)' }}>
-                                    📅 {new Date(nextEvent.event_date).toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
-                                </p>
-                            </div>
-                            <Link to="/events" className="btn btn-gold">View Events</Link>
+            {/* ─── EVENTS CTA ─── */}
+            <section className="section" style={{ background: 'var(--surface)' }}>
+                <div className="container">
+                    <div className="glass reveal-scale" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: 24, alignItems: 'center', padding: 32 }}>
+                        <div>
+                            <p className="section-eyebrow">EVENTS & CELEBRATIONS</p>
+                            <h2 style={{ marginBottom: 12 }}>Something Special Awaits</h2>
+                            <p style={{ marginBottom: 20 }}>
+                                From live music nights to grand food festivals and private celebrations — discover what's happening at Spice Garden.
+                            </p>
                         </div>
+                        <Link to="/events" className="btn btn-gold">View Events</Link>
                     </div>
-                </section>
-            )}
+                </div>
+            </section>
 
             {/* ─── NEWSLETTER ─── */}
             <section className="section">

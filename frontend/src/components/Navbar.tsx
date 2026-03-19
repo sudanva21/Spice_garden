@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabaseClient';
+import { ADMIN_EMAILS } from '../constants/admin';
 
 const NAV_LINKS = [
     { label: 'Home', path: '/' },
@@ -17,7 +18,26 @@ export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const location = useLocation();
-    const { user, openAuthModal } = useAuth();
+    const navigate = useNavigate();
+
+    const [user, setUser] = useState<any>(null);
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+        // Fetch initial session
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            setUser(session?.user || null);
+            setIsAdmin(session?.user?.email ? ADMIN_EMAILS.includes(session.user.email) : false);
+        });
+
+        // Listen for auth changes
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            setUser(session?.user || null);
+            setIsAdmin(session?.user?.email ? ADMIN_EMAILS.includes(session.user.email) : false);
+        });
+
+        return () => subscription.unsubscribe();
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -29,18 +49,40 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const handleGoogleSignIn = async () => {
+        await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: { redirectTo: window.location.origin + '/auth/callback' }
+        });
+    };
+
+    const handleSignOut = async () => {
+        await supabase.auth.signOut();
+        navigate('/');
+        setMobileOpen(false);
+    };
+
     const AuthActions = ({ mobile = false }: { mobile?: boolean }) => (
         <div style={{ display: 'flex', alignItems: 'center', gap: mobile ? '20px' : '1rem', flexDirection: mobile ? 'column' : 'row', width: '100%', justifyContent: 'center' }}>
             {user ? (
-                <Link to="/profile" onClick={() => setMobileOpen(false)} style={{ color: 'var(--gold)', fontWeight: 'bold', fontFamily: 'DM Sans', fontSize: mobile ? '1.15rem' : 'inherit' }}>
-                    {user.name || 'Profile'}
-                </Link>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexDirection: mobile ? 'column' : 'row' }}>
+                    {user.user_metadata?.avatar_url && (
+                        <img src={user.user_metadata.avatar_url} alt="Avatar" style={{ width: 32, height: 32, borderRadius: '50%' }} />
+                    )}
+                    <span style={{ color: 'var(--gold)', fontWeight: 'bold', fontFamily: 'DM Sans', fontSize: mobile ? '1.15rem' : 'inherit' }}>
+                        {user.user_metadata?.full_name || 'User'}
+                    </span>
+                    {isAdmin && (
+                        <Link to="/admin" onClick={() => setMobileOpen(false)} style={{ color: 'var(--text)', fontSize: '.85rem' }}>Admin Panel</Link>
+                    )}
+                    <button onClick={handleSignOut} style={{ background: 'none', border: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: '.85rem' }}>Sign Out</button>
+                </div>
             ) : (
                 <button
-                    onClick={() => { openAuthModal(); setMobileOpen(false); }}
+                    onClick={() => { handleGoogleSignIn(); setMobileOpen(false); }}
                     style={{ background: 'none', border: 'none', color: 'var(--text)', cursor: 'pointer', fontWeight: 'bold', fontFamily: 'DM Sans', fontSize: mobile ? '1.15rem' : 'inherit' }}
                 >
-                    Login
+                    Sign in with Google
                 </button>
             )}
             <Link to="/book" onClick={() => setMobileOpen(false)} className="btn btn-gold" style={{ padding: '12px 28px', fontSize: '.85rem' }}>Book a Table</Link>

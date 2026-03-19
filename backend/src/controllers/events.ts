@@ -14,9 +14,9 @@ export const getActiveEvents = async (req: Request, res: Response) => {
     const { data, error } = await supabase
         .from('events')
         .select('*')
-        .eq('active', true)
-        .gte('event_date', new Date().toISOString())
-        .order('event_date', { ascending: true });
+        .eq('status', 'active')
+        .gte('date', new Date().toISOString())
+        .order('date', { ascending: true });
 
     if (error) return res.status(500).json({ success: false, error: error.message, code: 500 });
     res.json({ success: true, events: data ? data.map(mapEventsFromDB) : [] });
@@ -26,9 +26,9 @@ export const getNextEvent = async (req: Request, res: Response) => {
     const { data, error } = await supabase
         .from('events')
         .select('*')
-        .eq('active', true)
-        .gte('event_date', new Date().toISOString())
-        .order('event_date', { ascending: true })
+        .eq('status', 'active')
+        .gte('date', new Date().toISOString())
+        .order('date', { ascending: true })
         .limit(1)
         .single();
 

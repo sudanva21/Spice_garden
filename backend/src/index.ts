@@ -7,6 +7,7 @@ import rateLimit from 'express-rate-limit';
 
 // Routes
 import apiRoutes from './routes/api';
+import paymentRoutes from './routes/payment';
 
 dotenv.config();
 
@@ -70,6 +71,9 @@ app.use('/admin', express.static('src/admin'));
 // API Routes
 app.use('/api/v1', apiRoutes);
 
+// Payment Routes (for local development — replaces Vercel serverless functions)
+app.use('/api', paymentRoutes);
+
 // Global Error Handler
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   console.error(err.stack);
@@ -83,8 +87,6 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 // Export for Vercel
 export default app;
 
-if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
-}

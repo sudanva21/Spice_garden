@@ -1,0 +1,6 @@
+src/lib/supabaseAdmin.ts(4,3): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+src/lib/supabaseAdmin.ts(5,3): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+src/pages/Admin.tsx(4,30): error TS2307: Cannot find module '../hooks/useAdminAuth' or its corresponding type declarations.
+src/pages/EventDetail.tsx(10,20): error TS2339: Property 'Razorpay' does not exist on type 'Window & typeof globalThis'.
+src/pages/EventDetail.tsx(88,25): error TS2339: Property 'Razorpay' does not exist on type 'Window & typeof globalThis'.
+src/pages/EventDetail.tsx(159,36): error TS2339: Property 'Razorpay' does not exist on type 'Window & typeof globalThis'.

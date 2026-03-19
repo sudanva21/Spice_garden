@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { usePageReveal } from '../hooks/useReveal';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { SEOHead } from '../components/SEOHead';
 
 const API = import.meta.env.VITE_API_URL || '/api/v1';
 
@@ -62,6 +63,10 @@ export default function Menu() {
 
     return (
         <div className="page-enter" style={{ paddingTop: 120, minHeight: '100vh' }}>
+            <SEOHead 
+                title="Our Menu | Spice Garden Gokak" 
+                description="Browse our delicious Indian and Chinese cuisine menu. Order online or visit Spice Garden in Gokak."
+            />
             <div className="container">
                 <div className="reveal" style={{ textAlign: 'center', marginBottom: 48 }}>
                     <p className="section-eyebrow">OUR MENU</p>
