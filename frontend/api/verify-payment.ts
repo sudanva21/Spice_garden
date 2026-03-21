@@ -86,11 +86,14 @@ export default async function handler(req: any, res: any) {
 
     // 4. Increment booked seats safely via RPC
     const { error: rpcErr } = await supabaseAdmin.rpc('increment_booked_seats', {
-      event_id: booking.event_id,
-      amount: booking.seats
+      p_event_id: booking.event_id,
+      p_amount: booking.seats
     });
 
-    if (rpcErr) throw rpcErr;
+    if (rpcErr) {
+      console.error('RPC increment error:', rpcErr);
+      // Non-fatal — continue with email
+    }
 
     // 5. Send Email via Resend
     const resend = new Resend(process.env.RESEND_API_KEY as string);

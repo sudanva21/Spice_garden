@@ -76,8 +76,7 @@ export default function EventDetail() {
             if (!window.Razorpay) throw new Error('Payment system failed to load. Please refresh.');
 
             // 1. Create order via API
-            const apiUrl = import.meta.env.VITE_API_URL || '';
-            const orderRes = await fetch(`${apiUrl}/api/create-order`, {
+            const orderRes = await fetch('/api/create-order', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -101,8 +100,7 @@ export default function EventDetail() {
             // TEST MODE: skip Razorpay, directly verify
             if (testMode) {
                 toast.loading('Test mode — completing booking...', { id: 'payment' });
-                const apiUrl = import.meta.env.VITE_API_URL || '';
-                const verifyRes = await fetch(`${apiUrl}/api/verify-payment`, {
+                const verifyRes = await fetch('/api/verify-payment', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -131,8 +129,7 @@ export default function EventDetail() {
                 handler: async function (response: any) {
                     try {
                         toast.loading('Verifying payment...', { id: 'payment' });
-                        const apiUrl = import.meta.env.VITE_API_URL || '';
-                        const verifyRes = await fetch(`${apiUrl}/api/verify-payment`, {
+                        const verifyRes = await fetch('/api/verify-payment', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
