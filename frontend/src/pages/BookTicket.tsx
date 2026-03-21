@@ -19,7 +19,7 @@ export default function BookTicket() {
         const errs: Record<string, string> = {};
         if (step === 0) {
             if (!form.name.trim() || form.name.trim().length < 2) errs.name = 'Please enter your full name';
-            if (!form.phone.trim() || !/^[+]?[\d\s\-()]{10,15}$/.test(form.phone)) errs.phone = 'Valid phone number is required for reservation';
+            if (!form.phone.trim() || !/^\d{10}$/.test(form.phone)) errs.phone = 'Valid 10-digit phone number is required';
             if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = 'Please enter a valid email address';
         }
         if (step === 1) {
@@ -94,7 +94,10 @@ export default function BookTicket() {
                     {step === 0 && (
                         <div>
                             <div className="form-group"><label>FULL NAME *</label><input value={form.name} onChange={e => update('name', e.target.value)} placeholder="Enter your name" style={errors.name ? { borderColor: '#e74c3c' } : {}} /><FieldError field="name" /></div>
-                            <div className="form-group"><label>PHONE NUMBER *</label><input value={form.phone} onChange={e => update('phone', e.target.value)} placeholder="+91 98765 43210" style={errors.phone ? { borderColor: '#e74c3c' } : {}} /><FieldError field="phone" /></div>
+                            <div className="form-group"><label>PHONE NUMBER (10 DIGITS) *</label><input value={form.phone} onChange={e => {
+                                const val = e.target.value.replace(/\D/g, '');
+                                if (val.length <= 10) update('phone', val);
+                            }} placeholder="9876543210" style={errors.phone ? { borderColor: '#e74c3c' } : {}} /><FieldError field="phone" /></div>
                             <div className="form-group"><label>EMAIL (OPTIONAL)</label><input type="email" value={form.email} onChange={e => update('email', e.target.value)} placeholder="your@email.com" style={errors.email ? { borderColor: '#e74c3c' } : {}} /><FieldError field="email" /></div>
                         </div>
                     )}

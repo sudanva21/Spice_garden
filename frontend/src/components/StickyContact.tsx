@@ -4,15 +4,13 @@ export default function StickyContact() {
     const whatsapp = '9741800400';
 
     return (
-        <div style={{
-            position: 'fixed', bottom: 24, left: 24, zIndex: 999,
-            display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start'
-        }}>
+        <>
             {/* WhatsApp */}
             <a
                 href={`https://wa.me/91${whatsapp}?text=Hi%20Spice%20Garden!%20I%20would%20like%20to%20make%20a%20reservation.`}
                 target="_blank" rel="noopener noreferrer"
                 style={{
+                    position: 'fixed', bottom: 24, left: 24, zIndex: 999,
                     width: 56, height: 56, borderRadius: '50%',
                     background: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center',
                     boxShadow: '0 4px 20px rgba(37,211,102,0.4)', transition: 'transform .3s ease',
@@ -27,6 +25,7 @@ export default function StickyContact() {
             <a
                 href={`tel:+91${phone}`}
                 style={{
+                    position: 'fixed', bottom: 24, right: 24, zIndex: 999,
                     width: 56, height: 56, borderRadius: '50%',
                     background: 'linear-gradient(135deg, var(--gold), var(--gold-light))',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -37,6 +36,6 @@ export default function StickyContact() {
                 onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
                 title="Call Now"
             >📞</a>
-        </div>
+        </>
     );
 }
