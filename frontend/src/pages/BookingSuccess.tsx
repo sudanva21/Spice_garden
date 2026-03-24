@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { supabase } from '../lib/supabaseClient';
-import { TABLES } from '../constants/tables';
+import { db } from '../lib/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 import { usePageReveal } from '../hooks/useReveal';
 import toast from 'react-hot-toast';
 
@@ -14,13 +14,9 @@ export default function BookingSuccess() {
     useEffect(() => {
         async function fetchBooking() {
             try {
-                const { data, error } = await supabase
-                    .from(TABLES.BOOKINGS)
-                    .select('*')
-                    .eq('id', id)
-                    .single();
-                if (error) throw error;
-                setBooking(data);
+                const docSnap = await getDoc(doc(db, 'bookings', id as string));
+                if (!docSnap.exists()) throw new Error("Not found");
+                setBooking({ id: docSnap.id, ...docSnap.data() });
             } catch (err: any) {
                 toast.error('Failed to load ticket: ' + err.message);
             } finally {

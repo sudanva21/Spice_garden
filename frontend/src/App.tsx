@@ -24,14 +24,13 @@ import Legal from './pages/Legal';
 import Admin from './pages/Admin';
 import Profile from './pages/Profile';
 import AdminLogin from './pages/AdminLogin';
-import AuthCallback from './pages/AuthCallback';
+
 import BookingFailed from './pages/BookingFailed';
 import { Navigate } from 'react-router-dom';
 import React from 'react';
 
 function ProtectedAdminRoute({ children }: { children: React.ReactNode }) {
-    const token = localStorage.getItem('admin_token');
-    if (!token) {
+    if (localStorage.getItem('admin_token') !== '805520') {
         return <Navigate to="/admin/login" replace />;
     }
     return children;
@@ -65,7 +64,6 @@ function Layout() {
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route path="/admin" element={<ProtectedAdminRoute><Admin /></ProtectedAdminRoute>} />
                 <Route path="/profile" element={<Profile />} />
-                <Route path="/auth/callback" element={<AuthCallback />} />
             </Routes>
             {!isAskAI && <Footer />}
             <StickyContact />

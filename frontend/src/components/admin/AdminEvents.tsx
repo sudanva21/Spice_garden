@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../../lib/supabaseClient';
-import { TABLES } from '../../constants/tables';
+import { db } from '../../lib/firebase';
+import { collection, getDocs, doc, updateDoc, addDoc, deleteDoc, query, where, orderBy } from 'firebase/firestore';
 import toast from 'react-hot-toast';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
@@ -23,9 +23,12 @@ export default function AdminEvents() {
 
     async function fetchEvents() {
         setLoading(true);
-        const { data, error } = await supabase.from(TABLES.EVENTS).select('*').order('date', { ascending: false });
-        if (error) toast.error('Error fetching events: ' + error.message);
-        else setEvents(data || []);
+        try {
+            const qs = await getDocs(query(collection(db, 'events'), orderBy('date', 'desc')));
+            setEvents(qs.docs.map(d => ({ id: d.id, ...d.data() })));
+        } catch (err: any) {
+            toast.error('Error fetching events: ' + err.message);
+        }
         setLoading(false);
     }
 
@@ -38,14 +41,14 @@ export default function AdminEvents() {
         }
 
         try {
-            if (payload.id) {
-                const { error } = await supabase.from(TABLES.EVENTS).update(payload).eq('id', payload.id);
-                if (error) throw error;
+            const id = payload.id;
+            delete payload.id;
+            if (id) {
+                await updateDoc(doc(db, 'events', id), payload);
                 toast.success('Event updated!');
             } else {
                 payload.booked_seats = 0;
-                const { error } = await supabase.from(TABLES.EVENTS).insert([payload]);
-                if (error) throw error;
+                await addDoc(collection(db, 'events'), payload);
                 toast.success('Event created!');
             }
             setIsFormOpen(false);
@@ -59,8 +62,7 @@ export default function AdminEvents() {
     const handleDeleteEvent = async (id: string) => {
         if (!confirm('Are you sure you want to delete this event? This action cannot be undone.')) return;
         try {
-            const { error } = await supabase.from(TABLES.EVENTS).delete().eq('id', id);
-            if (error) throw error;
+            await deleteDoc(doc(db, 'events', id));
             toast.success('Event deleted!');
             fetchEvents();
         } catch (err: any) {
@@ -73,13 +75,8 @@ export default function AdminEvents() {
         setIsSlideOverOpen(true);
         setLoadingBookings(true);
         try {
-            const { data, error } = await supabase
-                .from(TABLES.BOOKINGS)
-                .select('*')
-                .eq('event_id', eventId)
-                .order('created_at', { ascending: false });
-            if (error) throw error;
-            setBookings(data || []);
+            const qs = await getDocs(query(collection(db, 'bookings'), where('event_id', '==', eventId), orderBy('created_at', 'desc')));
+            setBookings(qs.docs.map(d => ({ id: d.id, ...d.data() })));
         } catch (err: any) {
             toast.error('Error fetching bookings: ' + err.message);
         } finally {
@@ -270,8 +267,29 @@ export default function AdminEvents() {
                                     <input type="number" min="0" required value={editItem.price_per_seat || ''} onChange={e => setEditItem({...editItem, price_per_seat: parseInt(e.target.value)})} className="admin-input" />
                                 </div>
                                 <div className="space-y-4">
-                                    <label className="block text-sm text-[var(--gold)] font-['DM_Sans'] mb-1">Cover Image URL</label>
-                                    <input type="url" value={editItem.image_url || ''} onChange={e => setEditItem({...editItem, image_url: e.target.value})} className="admin-input" placeholder="https://..." />
+                                    <label className="block text-sm text-[var(--gold)] font-['DM_Sans'] mb-1">Cover Image (Upload)</label>
+                                    <div className="flex gap-4 items-center">
+                                        <input type="file" accept="image/*" onChange={e => {
+                                            const file = e.target.files?.[0];
+                                            if (!file) return;
+                                            const reader = new FileReader();
+                                            reader.onload = (event) => {
+                                                const img = new Image();
+                                                img.onload = () => {
+                                                    const canvas = document.createElement('canvas');
+                                                    let w = img.width, h = img.height; const max = 800;
+                                                    if (w > h) { if (w > max) { h *= max/w; w = max; } } else { if (h > max) { w *= max/h; h = max; } }
+                                                    canvas.width = w; canvas.height = h;
+                                                    canvas.getContext('2d')?.drawImage(img, 0, 0, w, h);
+                                                    setEditItem({...editItem, image_url: canvas.toDataURL('image/jpeg', 0.7)});
+                                                };
+                                                img.src = event.target?.result as string;
+                                            };
+                                            reader.readAsDataURL(file);
+                                        }} className="admin-input flex-1 p-2" />
+                                        {editItem.image_url && <img src={editItem.image_url} alt="" className="h-10 w-10 rounded-lg object-cover border border-[var(--gold)]" />}
+                                    </div>
+                                    {!editItem.image_url && <input type="url" value={editItem.image_url || ''} onChange={e => setEditItem({...editItem, image_url: e.target.value})} className="admin-input mt-2" placeholder="Or paste URL here..." />}
                                 </div>
                                 <div className="space-y-4">
                                     <label className="block text-sm text-[var(--gold)] font-['DM_Sans'] mb-1">Status</label>

@@ -29,7 +29,7 @@ interface EventBooking {
 }
 
 export default function Profile() {
-    const { user, token, openAuthModal, logout } = useAuth();
+    const { user, openAuthModal, logout } = useAuth();
 
     const [orders, setOrders] = useState<Order[]>([]);
     const [eventBookings, setEventBookings] = useState<EventBooking[]>([]);

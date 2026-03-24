@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { usePageReveal } from '../hooks/useReveal';
-import axios from 'axios';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 import { SEOHead } from '../components/SEOHead';
-
-const API = import.meta.env.VITE_API_URL || '/api/v1';
 
 const CATS = ['All', 'Starters', 'Main Course (Veg)', 'Main Course (Non-Veg)', 'Biryani', 'Breads', 'Chinese', 'Soups', 'Desserts'];
 
@@ -14,7 +13,9 @@ export default function Menu() {
     usePageReveal();
 
     useEffect(() => {
-        axios.get(`${API}/menu`).then(r => setItems(r.data.items || [])).catch(() => { });
+        getDocs(collection(db, 'menu')).then(qs => {
+            setItems(qs.docs.map(d => ({ id: d.id, ...d.data() })));
+        }).catch(() => { });
     }, []);
 
     const filtered = cat === 'All' ? items : items.filter(i => i.category === cat);

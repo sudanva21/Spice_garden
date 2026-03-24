@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabaseClient';
-import { TABLES } from '../constants/tables';
+import { db } from '../lib/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 import { usePageReveal } from '../hooks/useReveal';
 import toast from 'react-hot-toast';
 
@@ -39,19 +39,20 @@ export default function EventDetail() {
 
     useEffect(() => {
         async function init() {
-            const { data, error } = await supabase
-                .from(TABLES.EVENTS)
-                .select('*')
-                .eq('id', id)
-                .single();
-
-            if (error || !data) {
+            try {
+                const docSnap = await getDoc(doc(db, 'events', id as string));
+                if (!docSnap.exists()) {
+                    toast.error('Event not found');
+                    navigate('/events');
+                    return;
+                }
+                setEvent({ id: docSnap.id, ...docSnap.data() });
+            } catch (err: any) {
                 toast.error('Event not found');
                 navigate('/events');
-                return;
+            } finally {
+                setLoading(false);
             }
-            setEvent(data);
-            setLoading(false);
         }
         init();
     }, [id, navigate]);

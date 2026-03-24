@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { supabase } from '../lib/supabaseClient';
-import { TABLES } from '../constants/tables';
+import { db } from '../lib/firebase';
+import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 import { usePageReveal } from '../hooks/useReveal';
 import toast from 'react-hot-toast';
 import { SEOHead } from '../components/SEOHead';
@@ -16,14 +16,8 @@ export default function Events() {
     useEffect(() => {
         async function fetchEvents() {
             try {
-                const { data, error } = await supabase
-                    .from(TABLES.EVENTS)
-                    .select('*')
-                    .eq('status', 'active')
-                    .order('date', { ascending: true });
-
-                if (error) throw new Error(error.message);
-                setEvents(data || []);
+                const qs = await getDocs(query(collection(db, 'events'), where('status', '==', 'active'), orderBy('date', 'asc')));
+                setEvents(qs.docs.map(d => ({ id: d.id, ...d.data() })));
             } catch (err: any) {
                 toast.error('Failed to load events: ' + err.message);
             } finally {

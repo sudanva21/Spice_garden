@@ -1,42 +1,64 @@
-import axios from 'axios';
+import { collection, getDocs, query, where, addDoc, orderBy, limit as fsLimit } from 'firebase/firestore';
+import { db } from './lib/firebase';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1';
+export const getMenu = async () => {
+    const qs = await getDocs(collection(db, 'menu'));
+    return { data: { items: qs.docs.map(d => ({ id: d.id, ...d.data() })) } };
+};
 
-const api = axios.create({
-    baseURL: API_BASE,
-    headers: { 'Content-Type': 'application/json' }
-});
+export const getEvents = async () => {
+    const qs = await getDocs(collection(db, 'events'));
+    return { data: { events: qs.docs.map(d => ({ id: d.id, ...d.data() })) } };
+};
 
-// Attach bearer token for admin routes if present
-api.interceptors.request.use(config => {
-    const token = localStorage.getItem('sg_admin_token');
-    if (token) {
-        config.headers['Authorization'] = `Bearer ${token}`;
-    }
-    return config;
-});
+export const getNextEvent = async () => {
+    const q = query(collection(db, 'events'), where('date', '>=', new Date().toISOString()), orderBy('date', 'asc'), fsLimit(1));
+    const qs = await getDocs(q);
+    return { data: { event: qs.docs[0] ? { id: qs.docs[0].id, ...qs.docs[0].data() } : null } };
+};
 
-export const getMenu = () => api.get('/menu');
+export const getBlogPosts = async (params?: { category?: string; limit?: number }) => {
+    let q = query(collection(db, 'blog'));
+    if (params?.category) q = query(q, where('category', '==', params.category));
+    if (params?.limit) q = query(q, fsLimit(params.limit));
+    const qs = await getDocs(q);
+    return { data: { posts: qs.docs.map(d => ({ id: d.id, ...d.data() })) } };
+};
 
-export const getEvents = () => api.get('/events');
-export const getNextEvent = () => api.get('/events/next');
+export const getBlogPost = async (slug: string) => {
+    const q = query(collection(db, 'blog'), where('slug', '==', slug), fsLimit(1));
+    const qs = await getDocs(q);
+    return { data: { post: qs.docs[0] ? { id: qs.docs[0].id, ...qs.docs[0].data() } : null } };
+};
 
-export const getBlogPosts = (params?: { category?: string; limit?: number }) =>
-    api.get('/blog', { params });
-export const getBlogPost = (slug: string) => api.get(`/blog/${slug}`);
+export const getGallery = async (category?: string) => {
+    let q = query(collection(db, 'gallery'));
+    if (category) q = query(q, where('category', '==', category));
+    const qs = await getDocs(q);
+    return { data: { images: qs.docs.map(d => ({ id: d.id, ...d.data() })) } };
+};
 
-export const getGallery = (category?: string) =>
-    api.get('/gallery', { params: category ? { category } : {} });
+export const getTestimonials = async () => ({ data: { testimonials: [] } });
 
-export const getTestimonials = () => api.get('/testimonials');
+export const submitBooking = async (data: Record<string, unknown>) => {
+    const docRef = await addDoc(collection(db, 'bookings'), { ...data, status: 'pending', created_at: new Date().toISOString() });
+    return { data: { success: true, id: docRef.id } };
+};
 
-export const submitBooking = (data: Record<string, unknown>) => api.post('/bookings', data);
-export const submitContact = (data: Record<string, unknown>) => api.post('/contact', data);
-export const subscribeNewsletter = (email: string) => api.post('/newsletter', { email });
+export const submitContact = async (data: Record<string, unknown>) => {
+    const docRef = await addDoc(collection(db, 'messages'), { ...data, created_at: new Date().toISOString() });
+    return { data: { success: true, id: docRef.id } };
+};
 
-export const sendChatMessage = (sessionId: string, message: string, history: { role: string; content: string }[]) =>
-    api.post('/chat', { sessionId, message, history });
+export const subscribeNewsletter = async (email: string) => {
+    const docRef = await addDoc(collection(db, 'newsletter_subscribers'), { email, created_at: new Date().toISOString() });
+    return { data: { success: true, id: docRef.id } };
+};
 
-export const getStats = () => api.get('/stats');
+export const sendChatMessage = async (_sessionId: string, _message: string, _history: any[]) => {
+    return { data: { reply: "Hi! The AI chat is currently offline because we migrated to a serverless architecture." } };
+};
 
-export default api;
+export const getStats = async () => ({ data: { stats: { diners: 15200, menuItems: 65, rating: 4.8 } } });
+
+export default {};

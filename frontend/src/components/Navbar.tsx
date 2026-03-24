@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { supabase } from '../lib/supabaseClient';
+import { auth } from '../lib/firebase';
+import { onAuthStateChanged, signOut, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { ADMIN_EMAILS } from '../constants/admin';
 
 const NAV_LINKS = [
@@ -24,19 +25,15 @@ export default function Navbar() {
     const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
-        // Fetch initial session
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            setUser(session?.user || null);
-            setIsAdmin(session?.user?.email ? ADMIN_EMAILS.includes(session.user.email) : false);
-        });
+        const checkAdmin = () => localStorage.getItem('admin_token') === '805520';
+        setIsAdmin(checkAdmin());
 
-        // Listen for auth changes
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-            setUser(session?.user || null);
-            setIsAdmin(session?.user?.email ? ADMIN_EMAILS.includes(session.user.email) : false);
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+            const emailMatches = currentUser?.email ? ADMIN_EMAILS.includes(currentUser.email) : false;
+            setIsAdmin(checkAdmin() || emailMatches);
         });
-
-        return () => subscription.unsubscribe();
+        return () => unsubscribe();
     }, []);
 
     useEffect(() => {
@@ -50,14 +47,16 @@ export default function Navbar() {
     }, []);
 
     const handleGoogleSignIn = async () => {
-        await supabase.auth.signInWithOAuth({
-            provider: 'google',
-            options: { redirectTo: window.location.origin + '/auth/callback' }
-        });
+        const provider = new GoogleAuthProvider();
+        try {
+            await signInWithPopup(auth, provider);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const handleSignOut = async () => {
-        await supabase.auth.signOut();
+        await signOut(auth);
         navigate('/');
         setMobileOpen(false);
     };
@@ -66,11 +65,11 @@ export default function Navbar() {
         <div style={{ display: 'flex', alignItems: 'center', gap: mobile ? '20px' : '1rem', flexDirection: mobile ? 'column' : 'row', width: '100%', justifyContent: 'center' }}>
             {user ? (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexDirection: mobile ? 'column' : 'row' }}>
-                    {user.user_metadata?.avatar_url && (
-                        <img src={user.user_metadata.avatar_url} alt="Avatar" style={{ width: 32, height: 32, borderRadius: '50%' }} />
+                    {user.photoURL && (
+                        <img src={user.photoURL} alt="Avatar" style={{ width: 32, height: 32, borderRadius: '50%' }} />
                     )}
                     <span style={{ color: 'var(--gold)', fontWeight: 'bold', fontFamily: 'DM Sans', fontSize: mobile ? '1.15rem' : 'inherit' }}>
-                        {user.user_metadata?.full_name || 'User'}
+                        {user.displayName || 'User'}
                     </span>
                     {isAdmin && (
                         <Link to="/admin" onClick={() => setMobileOpen(false)} style={{ color: 'var(--text)', fontSize: '.85rem' }}>Admin Panel</Link>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { supabase } from '../lib/supabase';
+
 
 export default function AuthModal() {
     const { isAuthModalOpen, closeAuthModal } = useAuth();
@@ -14,13 +14,10 @@ export default function AuthModal() {
         setError('');
         setLoading(true);
         try {
-            const { error } = await supabase.auth.signInWithOAuth({
-                provider: 'google',
-                options: {
-                    redirectTo: window.location.origin
-                }
-            });
-            if (error) throw error;
+            const { signInWithPopup } = await import('firebase/auth');
+            const { auth, provider } = await import('../lib/firebase');
+            await signInWithPopup(auth, provider);
+            closeAuthModal();
         } catch (err: any) {
             setError(err.message || 'Failed to sign in with Google');
             setLoading(false);
