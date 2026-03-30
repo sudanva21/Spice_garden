@@ -1,23 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { usePageReveal } from '../hooks/useReveal';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../lib/firebase';
 import { SEOHead } from '../components/SEOHead';
+import menuData from '../data/menu.json';
 
-const CATS = ['All', 'Starters', 'Main Course (Veg)', 'Main Course (Non-Veg)', 'Biryani', 'Breads', 'Chinese', 'Soups', 'Desserts'];
+const CATS = ['All', ...Array.from(new Set(menuData.map(d => d.category)))];
+
+interface MenuItem {
+    id: string;
+    name: string;
+    price: string;
+    category: string;
+    is_veg: boolean;
+    description: string;
+    image_url?: string;
+}
 
 export default function Menu() {
-    const [items, setItems] = useState<any[]>([]);
     const [cat, setCat] = useState('All');
 
-    usePageReveal();
+    usePageReveal([cat]);
 
-    useEffect(() => {
-        getDocs(collection(db, 'menu')).then(qs => {
-            setItems(qs.docs.map(d => ({ id: d.id, ...d.data() })));
-        }).catch(() => { });
-    }, []);
-
+    const items: MenuItem[] = menuData.map((d, i) => ({ id: i.toString(), ...d }));
     const filtered = cat === 'All' ? items : items.filter(i => i.category === cat);
 
     return (
@@ -48,28 +51,42 @@ export default function Menu() {
                 </div>
 
                 {/* Menu Grid */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))', gap: 20 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 16 }}>
                     {filtered.map((item, i) => (
-                        <div key={item.id} className="glass menu-card" style={{ transitionDelay: `${(i % 8) * .05}s`, padding: 0, overflow: 'hidden' }}>
+                        <div key={item.id} className="glass menu-card reveal" style={{ 
+                            transitionDelay: `${(i % 8) * .05}s`, 
+                            padding: item.image_url ? 0 : '16px', 
+                            overflow: 'hidden',
+                            position: 'relative',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            borderTop: item.image_url ? '' : '3px solid var(--gold)',
+                            background: item.image_url ? '' : 'linear-gradient(145deg, rgba(212,168,67,0.08) 0%, rgba(13,26,15,0.6) 100%)'
+                        }}>
                             {item.image_url && (
                                 <img src={item.image_url} alt={item.name}
-                                    style={{ width: '100%', height: 180, objectFit: 'cover' }} />
+                                    style={{ width: '100%', height: 140, objectFit: 'cover' }} />
                             )}
-                            <div style={{ padding: '16px 20px 20px' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                            <div style={{ padding: item.image_url ? '14px 16px' : 0, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 8 }}>
                                     <span style={{
-                                        width: 14, height: 14, borderRadius: 3,
+                                        width: 16, height: 16, borderRadius: 3,
                                         border: `2px solid ${item.is_veg ? '#27ae60' : '#e74c3c'}`,
                                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                        fontSize: '.5rem', flexShrink: 0
+                                        flexShrink: 0,
+                                        marginTop: 4
                                     }}>
-                                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: item.is_veg ? '#27ae60' : '#e74c3c' }} />
+                                        <span style={{ width: 8, height: 8, borderRadius: '50%', background: item.is_veg ? '#27ae60' : '#e74c3c' }} />
                                     </span>
-                                    <h3 style={{ fontSize: '1rem', margin: 0 }}>{item.name}</h3>
+                                    <h3 style={{ fontSize: '1.05rem', margin: 0, lineHeight: 1.25 }}>
+                                        {item.name}
+                                    </h3>
                                 </div>
-                                {item.description && <p style={{ fontSize: '.82rem', color: 'var(--muted)', marginBottom: 12, fontFamily: 'DM Sans' }}>{item.description}</p>}
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <span style={{ fontFamily: 'Cormorant Garamond', fontSize: '1.3rem', fontWeight: 700, color: 'var(--gold)' }}>₹{item.price}</span>
+                                {item.description && <p style={{ fontSize: '.9rem', color: 'var(--muted)', marginBottom: 20, fontFamily: 'DM Sans', flexGrow: 1 }}>{item.description}</p>}
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: 'auto', paddingTop: item.description ? 0 : 12 }}>
+                                    <span style={{ fontFamily: 'Cormorant Garamond', fontSize: '1.25rem', fontWeight: 700, color: 'var(--gold)' }}>
+                                        {item.price.toLowerCase() === 'apc' ? 'As Per Catch' : `₹${item.price}`}
+                                    </span>
                                 </div>
                             </div>
                         </div>

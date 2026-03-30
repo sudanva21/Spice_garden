@@ -34,7 +34,7 @@ export function useReveal() {
 }
 
 // Hook to observe ALL reveal elements within any container
-export function usePageReveal() {
+export function usePageReveal(dependencies: any[] = []) {
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -57,7 +57,7 @@ export function usePageReveal() {
             clearTimeout(timer);
             observer.disconnect();
         };
-    }, []);
+    }, dependencies);
 }
 
 // Counter animation hook

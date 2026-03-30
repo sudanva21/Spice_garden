@@ -24,7 +24,16 @@ export default function Home() {
             <RestaurantSchema />
             {/* ─── HERO ─── */}
             <section className="hero">
-                <div className="hero-bg" />
+                <video 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline 
+                    className="hero-bg-video"
+                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}
+                >
+                    <source src="https://res.cloudinary.com/disgfuj6r/video/upload/v1774846479/spice-bg-vid_vogeu8.mov" type="video/mp4" />
+                </video>
                 <div className="hero-overlay" />
                 <div className="hero-content">
                     <p className="hero-eyebrow">GOKAK · KARNATAKA</p>

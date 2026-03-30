@@ -43,6 +43,10 @@ export default function Profile() {
 
         const fetchProfileData = async () => {
             try {
+                // Fetch the fresh Firebase JWT for backend authorization
+                const { auth } = await import('../lib/firebase');
+                const token = await auth.currentUser?.getIdToken();
+
                 const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/users/${user.id}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -60,7 +64,7 @@ export default function Profile() {
         };
 
         fetchProfileData();
-    }, [user, token]);
+    }, [user]);
 
     if (!user) {
         return (

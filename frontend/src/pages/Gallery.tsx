@@ -1,58 +1,118 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { usePageReveal } from '../hooks/useReveal';
-import { getGallery } from '../api';
-
-const CATS = ['All', 'Food', 'Ambiance', 'Events'];
+import { SEOHead } from '../components/SEOHead';
+import galleryData from '../data/gallery.json';
 
 export default function Gallery() {
-    const [images, setImages] = useState<any[]>([]);
-    const [cat, setCat] = useState('All');
     const [lightbox, setLightbox] = useState<any>(null);
     const [lightboxIdx, setLightboxIdx] = useState(0);
 
     usePageReveal();
 
-    useEffect(() => {
-        getGallery(cat === 'All' ? undefined : cat).then(r => setImages(r.data.images || [])).catch(() => { });
-    }, [cat]);
-
     const openLightbox = (img: any, idx: number) => { setLightbox(img); setLightboxIdx(idx); };
-    const nextImg = () => { const next = (lightboxIdx + 1) % images.length; setLightbox(images[next]); setLightboxIdx(next); };
-    const prevImg = () => { const prev = (lightboxIdx - 1 + images.length) % images.length; setLightbox(images[prev]); setLightboxIdx(prev); };
+    const nextImg = () => { const next = (lightboxIdx + 1) % galleryData.length; setLightbox(galleryData[next]); setLightboxIdx(next); };
+    const prevImg = () => { const prev = (lightboxIdx - 1 + galleryData.length) % galleryData.length; setLightbox(galleryData[prev]); setLightboxIdx(prev); };
 
     return (
-        <div className="page-enter" style={{ paddingTop: 120, minHeight: '100vh' }}>
+        <div className="page-enter" style={{ paddingTop: 120, minHeight: '100vh', paddingBottom: 80 }}>
+            <SEOHead title="Gallery | Spice Garden Gokak" description="View photos of our beautiful ambiance, events, and delicious food at Spice Garden." />
             <div className="container">
                 <div className="reveal" style={{ textAlign: 'center', marginBottom: 48 }}>
                     <p className="section-eyebrow">VISUAL JOURNEY</p>
                     <h1>Photo Gallery</h1>
-                    <p style={{ maxWidth: 500, margin: '12px auto 0' }}>A glimpse into our restaurant, food, and dining experience</p>
+                    <p style={{ maxWidth: 500, margin: '12px auto 0' }}>A glimpse into our vibrant ambiance, celebrations, and festive moments.</p>
                 </div>
 
-                {/* Filters */}
-                <div className="reveal" style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 48 }}>
-                    {CATS.map(c => (
-                        <button key={c} onClick={() => setCat(c)} style={{
-                            padding: '10px 24px', borderRadius: 28,
-                            border: `1.5px solid ${cat === c ? 'var(--gold)' : 'rgba(212,168,67,0.15)'}`,
-                            background: cat === c ? 'linear-gradient(135deg, var(--gold), var(--gold-light))' : 'transparent',
-                            color: cat === c ? '#0D1A0F' : 'var(--gold)',
-                            fontFamily: 'DM Sans', fontWeight: 600, fontSize: '.85rem',
-                            cursor: 'pointer', transition: 'all .3s var(--ease)'
-                        }}>{c}</button>
-                    ))}
-                </div>
+                <style>{`
+                    .bento-grid {
+                        display: grid;
+                        grid-template-columns: repeat(4, 1fr);
+                        grid-auto-rows: 250px;
+                        gap: 16px;
+                        padding: 16px 0;
+                    }
+                    
+                    .bento-item {
+                        position: relative;
+                        border-radius: 20px;
+                        overflow: hidden;
+                        cursor: pointer;
+                        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+                        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+                    }
+                    
+                    .bento-item img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+                    }
+                    
+                    .bento-item::after {
+                        content: '';
+                        position: absolute;
+                        inset: 0;
+                        background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 40%);
+                        opacity: 0;
+                        transition: opacity 0.4s ease;
+                    }
+
+                    .bento-item:hover {
+                        transform: translateY(-4px) scale(1.01);
+                        box-shadow: 0 16px 48px rgba(212, 168, 67, 0.2);
+                        z-index: 10;
+                    }
+                    
+                    .bento-item:hover img {
+                        transform: scale(1.05);
+                    }
+                    
+                    .bento-item:hover::after {
+                        opacity: 1;
+                    }
+
+                    .col-span-1 { grid-column: span 1; }
+                    .col-span-2 { grid-column: span 2; }
+                    .row-span-1 { grid-row: span 1; }
+                    .row-span-2 { grid-row: span 2; }
+
+                    /* Responsive sizing */
+                    @media (max-width: 992px) {
+                        .bento-grid {
+                            grid-template-columns: repeat(3, 1fr);
+                            grid-auto-rows: 200px;
+                        }
+                        /* On medium screens, re-adjust 4-column spans so they fit 3-columns nicely */
+                        .col-span-2 { grid-column: span 2; }
+                    }
+
+                    @media (max-width: 768px) {
+                        .bento-grid {
+                            grid-template-columns: repeat(2, 1fr);
+                            grid-auto-rows: 180px;
+                            gap: 12px;
+                        }
+                        /* Flatten some larger spans for smaller screens */
+                        .col-span-2 { grid-column: span 2; }
+                    }
+                    
+                    @media (max-width: 480px) {
+                        .bento-grid {
+                            grid-template-columns: repeat(2, 1fr);
+                            grid-auto-rows: 150px;
+                            gap: 8px;
+                        }
+                    }
+                `}</style>
 
                 {/* Gallery Grid */}
-                <div className="gallery-grid">
-                    {images.map((img, i) => (
-                        <div key={img.id} className="gallery-item" style={{ transitionDelay: `${(i % 6) * .06}s` }} onClick={() => openLightbox(img, i)}>
-                            <img src={img.image_url} alt={img.caption || 'Gallery image'} />
-                            <span className="caption">{img.caption}</span>
+                <div className="bento-grid">
+                    {galleryData.map((img, i) => (
+                        <div key={img.id} className={`bento-item reveal ${img.span}`} style={{ transitionDelay: `${(i % 8) * .05}s` }} onClick={() => openLightbox(img, i)}>
+                            <img src={img.url} alt={img.id} loading="lazy" />
                         </div>
                     ))}
                 </div>
-                {images.length === 0 && <p style={{ textAlign: 'center', color: 'var(--muted)', padding: '80px 0' }}>No images found for this category.</p>}
             </div>
 
             {/* Lightbox */}
@@ -62,17 +122,17 @@ export default function Gallery() {
                     style={{
                         position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)', zIndex: 1000,
                         display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'zoom-out',
-                        animation: 'fadeIn .2s ease'
+                        backdropFilter: 'blur(10px)',
+                        animation: 'fadeIn .3s var(--ease)'
                     }}
                 >
-                    <button onClick={(e) => { e.stopPropagation(); prevImg(); }} style={{ position: 'absolute', left: 24, top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.1)', border: 'none', color: 'white', fontSize: '1.8rem', width: 50, height: 50, borderRadius: '50%', cursor: 'pointer' }}>‹</button>
-                    <div onClick={e => e.stopPropagation()} style={{ position: 'relative', maxWidth: '85vw', maxHeight: '85vh', animation: 'scaleIn .3s var(--ease)' }}>
-                        <img src={lightbox.image_url} alt={lightbox.caption} style={{ maxWidth: '85vw', maxHeight: '80vh', objectFit: 'contain', borderRadius: 12 }} />
-                        {lightbox.caption && <p style={{ textAlign: 'center', fontSize: '.9rem', color: 'var(--muted)', marginTop: 16, fontFamily: 'DM Sans' }}>{lightbox.caption}</p>}
+                    <button onClick={(e) => { e.stopPropagation(); prevImg(); }} style={{ position: 'absolute', left: '3%', top: '50%', transform: 'translateY(-50%)', background: 'rgba(212,168,67,0.15)', border: '1px solid rgba(212,168,67,0.3)', color: 'var(--gold)', fontSize: '2rem', width: 60, height: 60, borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s' }}>‹</button>
+                    <div onClick={e => e.stopPropagation()} style={{ position: 'relative', maxWidth: '90vw', maxHeight: '90vh', animation: 'scaleIn .4s var(--ease)' }}>
+                        <img src={lightbox.url} alt={lightbox.id} style={{ maxWidth: '90vw', maxHeight: '85vh', objectFit: 'contain', borderRadius: 12, boxShadow: '0 20px 60px rgba(0,0,0,0.8)' }} />
                     </div>
-                    <button onClick={(e) => { e.stopPropagation(); nextImg(); }} style={{ position: 'absolute', right: 24, top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.1)', border: 'none', color: 'white', fontSize: '1.8rem', width: 50, height: 50, borderRadius: '50%', cursor: 'pointer' }}>›</button>
-                    <button onClick={() => setLightbox(null)} style={{ position: 'absolute', top: 24, right: 24, background: 'none', border: 'none', color: 'white', fontSize: '1.5rem', cursor: 'pointer' }}>✕</button>
-                    <p style={{ position: 'absolute', bottom: 24, fontFamily: 'DM Sans', fontSize: '.8rem', color: 'rgba(255,255,255,0.4)' }}>{lightboxIdx + 1} / {images.length}</p>
+                    <button onClick={(e) => { e.stopPropagation(); nextImg(); }} style={{ position: 'absolute', right: '3%', top: '50%', transform: 'translateY(-50%)', background: 'rgba(212,168,67,0.15)', border: '1px solid rgba(212,168,67,0.3)', color: 'var(--gold)', fontSize: '2rem', width: 60, height: 60, borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s' }}>›</button>
+                    <button onClick={() => setLightbox(null)} style={{ position: 'absolute', top: 24, right: 32, background: 'none', border: 'none', color: 'white', fontSize: '2rem', cursor: 'pointer', opacity: 0.7 }}>✕</button>
+                    <p style={{ position: 'absolute', bottom: 32, fontFamily: 'DM Sans', fontSize: '1rem', color: 'rgba(255,255,255,0.6)', letterSpacing: 2 }}>{lightboxIdx + 1} / {galleryData.length}</p>
                 </div>
             )}
         </div>

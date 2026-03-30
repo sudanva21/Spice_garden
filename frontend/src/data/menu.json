@@ -1,0 +1,1866 @@
+[
+  {
+    "name": "Bangada (Rawa Fry / Tawa Fry)",
+    "price": "APC",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/bangada__rawa_fry___tawa_fry_.jpg"
+  },
+  {
+    "name": "Bangada Masala Fry",
+    "price": "APC",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/bangada_masala_fry.jpg"
+  },
+  {
+    "name": "Bangada Curry",
+    "price": "APC",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/bangada_curry.jpg"
+  },
+  {
+    "name": "Surmai (Rawa Fry / Tawa Fry)",
+    "price": "APC",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/surmai__rawa_fry___tawa_fry_.jpg"
+  },
+  {
+    "name": "Surmai Masala Fry",
+    "price": "APC",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/surmai_masala_fry.jpg"
+  },
+  {
+    "name": "Surmai Curry",
+    "price": "APC",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/surmai_curry.jpg"
+  },
+  {
+    "name": "Prawns Ghee Roast",
+    "price": "APC",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/prawns_ghee_roast.jpg"
+  },
+  {
+    "name": "Tandoori Prawns",
+    "price": "APC",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/tandoori_prawns.jpg"
+  },
+  {
+    "name": "Prawns (Rawa Fry / Tawa Fry)",
+    "price": "APC",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/prawns__rawa_fry___tawa_fry_.jpg"
+  },
+  {
+    "name": "Prawns Masala Fry",
+    "price": "APC",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/prawns_masala_fry.jpg"
+  },
+  {
+    "name": "Prawns Curry",
+    "price": "APC",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/prawns_curry.jpg"
+  },
+  {
+    "name": "Chicken Ghee Roast",
+    "price": "320",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_ghee_roast.jpg"
+  },
+  {
+    "name": "Mangalorean Chicken Sukka",
+    "price": "295",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/mangalorean_chicken_sukka.jpg"
+  },
+  {
+    "name": "Chicken Kundapur",
+    "price": "295",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_kundapur.jpg"
+  },
+  {
+    "name": "Mutton Ghee Roast",
+    "price": "380",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/mutton_ghee_roast.jpg"
+  },
+  {
+    "name": "Mutton Sukka",
+    "price": "380",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/mutton_sukka.jpg"
+  },
+  {
+    "name": "Neer Dosa Per Plate (4Pcs)",
+    "price": "80",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/neer_dosa_per_plate__4pcs_.jpg"
+  },
+  {
+    "name": "Tomato Soup",
+    "price": "160",
+    "category": "Soups",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/tomato_soup.jpg"
+  },
+  {
+    "name": "Vegetable Clear Soup",
+    "price": "160",
+    "category": "Soups",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vegetable_clear_soup.jpg"
+  },
+  {
+    "name": "Vegetable Manchow Soup",
+    "price": "160",
+    "category": "Soups",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vegetable_manchow_soup.jpg"
+  },
+  {
+    "name": "Hot & Sour Vegetable Soup",
+    "price": "160",
+    "category": "Soups",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/hot___sour_vegetable_soup.jpg"
+  },
+  {
+    "name": "Sweet Corn Vegetable Soup",
+    "price": "160",
+    "category": "Soups",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/sweet_corn_vegetable_soup.jpg"
+  },
+  {
+    "name": "Lemon Corriander Soup",
+    "price": "160",
+    "category": "Soups",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/lemon_corriander_soup.jpg"
+  },
+  {
+    "name": "Chicken Clear Soup",
+    "price": "170",
+    "category": "Soups",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_clear_soup.jpg"
+  },
+  {
+    "name": "Chicken Manchow Soup",
+    "price": "170",
+    "category": "Soups",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_manchow_soup.jpg"
+  },
+  {
+    "name": "Hot & Sour Chicken Soup",
+    "price": "170",
+    "category": "Soups",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/hot___sour_chicken_soup.jpg"
+  },
+  {
+    "name": "Sweet Corn Chicken Soup",
+    "price": "170",
+    "category": "Soups",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/sweet_corn_chicken_soup.jpg"
+  },
+  {
+    "name": "Lemon Corriander Chicken Soup",
+    "price": "170",
+    "category": "Soups",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/lemon_corriander_chicken_soup.jpg"
+  },
+  {
+    "name": "Roast Papad",
+    "price": "30",
+    "category": "Starters",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/roast_papad.jpg"
+  },
+  {
+    "name": "Fry Papad",
+    "price": "35",
+    "category": "Starters",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/fry_papad.jpg"
+  },
+  {
+    "name": "Masala Papad",
+    "price": "45",
+    "category": "Starters",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/masala_papad.jpg"
+  },
+  {
+    "name": "French Fries",
+    "price": "160",
+    "category": "Starters",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/french_fries.jpg"
+  },
+  {
+    "name": "Corn Basket",
+    "price": "190",
+    "category": "Starters",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/corn_basket.jpg"
+  },
+  {
+    "name": "Corn Tikki",
+    "price": "230",
+    "category": "Starters",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/corn_tikki.jpg"
+  },
+  {
+    "name": "Hara Bhara Kabab",
+    "price": "230",
+    "category": "Starters",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/hara_bhara_kabab.jpg"
+  },
+  {
+    "name": "Paneer Tikka",
+    "price": "240",
+    "category": "Starters",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_tikka.png"
+  },
+  {
+    "name": "Paneer Malai Tikka",
+    "price": "260",
+    "category": "Starters",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_malai_tikka.jpg"
+  },
+  {
+    "name": "Lasooni Paneer Tikka",
+    "price": "260",
+    "category": "Starters",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_tikka.png"
+  },
+  {
+    "name": "Paneer Banjara Tikka",
+    "price": "260",
+    "category": "Starters",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_banjara_tikka.jpg"
+  },
+  {
+    "name": "Tangadi Kebab (1Pcs)",
+    "price": "170",
+    "category": "Starters",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/tangadi_kebab__1pcs_.jpg"
+  },
+  {
+    "name": "Chicken Tikka",
+    "price": "290",
+    "category": "Starters",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_tikka.jpg"
+  },
+  {
+    "name": "Chicken Banjara Kebab",
+    "price": "290",
+    "category": "Starters",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_banjara_kebab.jpg"
+  },
+  {
+    "name": "Chicken Angaray",
+    "price": "310",
+    "category": "Starters",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_angaray.jpg"
+  },
+  {
+    "name": "Chicken Malai Kebab",
+    "price": "310",
+    "category": "Starters",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_malai_kebab.jpg"
+  },
+  {
+    "name": "Tandoori Chicken (Half)",
+    "price": "420",
+    "category": "Starters",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/tandoori_chicken.png"
+  },
+  {
+    "name": "Tandoori Chicken (Full)",
+    "price": "840",
+    "category": "Starters",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/tandoori_chicken__full_.jpg"
+  },
+  {
+    "name": "Chicken",
+    "price": "65 - 265",
+    "category": "Chinese",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_clear_soup.jpg"
+  },
+  {
+    "name": "Chicken Manchurian / Chilly",
+    "price": "275",
+    "category": "Chinese",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_manchurian___chilly.jpg"
+  },
+  {
+    "name": "Chicken Szechwan",
+    "price": "285",
+    "category": "Chinese",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_szechwan.jpg"
+  },
+  {
+    "name": "Chicken Black Pepper",
+    "price": "285",
+    "category": "Chinese",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_black_pepper.jpg"
+  },
+  {
+    "name": "Chicken Salt and Pepper",
+    "price": "285",
+    "category": "Chinese",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_salt_and_pepper.jpg"
+  },
+  {
+    "name": "Chicken Drumstick (6 Pcs)",
+    "price": "320",
+    "category": "Chinese",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_drumstick__6_pcs_.jpg"
+  },
+  {
+    "name": "Chicken Chinatown (6 Pcs)",
+    "price": "355",
+    "category": "Chinese",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_chinatown__6_pcs_.jpg"
+  },
+  {
+    "name": "Gobi Manchurian / Chilly",
+    "price": "170",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/gobi_manchurian.png"
+  },
+  {
+    "name": "Vegetable Manchurian / Chilly",
+    "price": "190",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vegetable_manchurian___chilly.jpg"
+  },
+  {
+    "name": "Gobi 65 / Veg 65",
+    "price": "165",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/gobi_65___veg_65.jpg"
+  },
+  {
+    "name": "Vegetable Crispy",
+    "price": "190",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vegetable_crispy.jpg"
+  },
+  {
+    "name": "Vegetable Drumstick",
+    "price": "200",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vegetable_drumstick.jpg"
+  },
+  {
+    "name": "Babycorn Manchurian / Chilly",
+    "price": "190",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/babycorn_manchurian___chilly.jpg"
+  },
+  {
+    "name": "Babycorn Crispy",
+    "price": "190",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/babycorn_crispy.jpg"
+  },
+  {
+    "name": "Paneer Manchurian / Chilly",
+    "price": "220",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_manchurian___chilly.jpg"
+  },
+  {
+    "name": "Gobi China Town",
+    "price": "220",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/gobi_china_town.jpg"
+  },
+  {
+    "name": "Paneer China Town",
+    "price": "230",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_china_town.jpg"
+  },
+  {
+    "name": "Baby Corn Chinatown",
+    "price": "230",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/baby_corn_chinatown.jpg"
+  },
+  {
+    "name": "Mushroom Manchurian / Chilly",
+    "price": "280",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/mushroom_manchurian___chilly.jpg"
+  },
+  {
+    "name": "Paneer Satay",
+    "price": "280",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_satay.jpg"
+  },
+  {
+    "name": "Egg Manchurian / Chilly",
+    "price": "160",
+    "category": "Starters",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_manchurian___chilly.jpg"
+  },
+  {
+    "name": "Egg-65",
+    "price": "160",
+    "category": "Starters",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg-65.jpg"
+  },
+  {
+    "name": "Egg Szechwan",
+    "price": "170",
+    "category": "Starters",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_szechwan.jpg"
+  },
+  {
+    "name": "Egg China Town",
+    "price": "170",
+    "category": "Starters",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_china_town.jpg"
+  },
+  {
+    "name": "Yangai Badanikai",
+    "price": "210",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/yangai_badanikai.jpg"
+  },
+  {
+    "name": "Stuff Capsicum",
+    "price": "210",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/stuff_capsicum.jpg"
+  },
+  {
+    "name": "Bhendi Masala",
+    "price": "210",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/bhendi_masala.jpg"
+  },
+  {
+    "name": "Noogikai Fry",
+    "price": "170",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/noogikai_fry.jpg"
+  },
+  {
+    "name": "Bhendi Fry",
+    "price": "190",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/bhendi_fry.jpg"
+  },
+  {
+    "name": "Lahsuni Palak",
+    "price": "250",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/lahsuni_palak.jpg"
+  },
+  {
+    "name": "Panjabi Aloo Gobi Masala",
+    "price": "270",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/panjabi_aloo_gobi_masala.jpg"
+  },
+  {
+    "name": "Veg Peshawari",
+    "price": "280",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/veg_peshawari.jpg"
+  },
+  {
+    "name": "Malavani Veg Curry",
+    "price": "280",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/malavani_veg_curry.jpg"
+  },
+  {
+    "name": "Dahi Bhendi Masala",
+    "price": "280",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/dahi_bhendi_masala.jpg"
+  },
+  {
+    "name": "Sham Savera",
+    "price": "290",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/sham_savera.jpg"
+  },
+  {
+    "name": "Paneer Tikka Lababdar",
+    "price": "290",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_tikka_lababdar.jpg"
+  },
+  {
+    "name": "Veg Nijami Handi",
+    "price": "290",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/veg_nijami_handi.jpg"
+  },
+  {
+    "name": "Reshmi Paneer",
+    "price": "290",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/reshmi_paneer.jpg"
+  },
+  {
+    "name": "Veg Lazeez",
+    "price": "290",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/veg_lazeez.jpg"
+  },
+  {
+    "name": "Mutter Paneer Burji",
+    "price": "300",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/mutter_paneer_burji.jpg"
+  },
+  {
+    "name": "Paneer Kurachan",
+    "price": "300",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_kurachan.jpg"
+  },
+  {
+    "name": "Vegetable Maratha / Kholapuri",
+    "price": "240",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vegetable_maratha___kholapuri.jpg"
+  },
+  {
+    "name": "Vegetable Hydrabadi",
+    "price": "240",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vegetable_hydrabadi.jpg"
+  },
+  {
+    "name": "Vegetable Jalfrezie",
+    "price": "240",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vegetable_jalfrezie.jpg"
+  },
+  {
+    "name": "Vegetable Tawa Masala",
+    "price": "240",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vegetable_tawa_masala.jpg"
+  },
+  {
+    "name": "Veg Diwani Handi",
+    "price": "240",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/veg_diwani_handi.jpg"
+  },
+  {
+    "name": "Veg Kalcharani",
+    "price": "240",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/veg_kalcharani.jpg"
+  },
+  {
+    "name": "Vegetable Handi",
+    "price": "240",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vegetable_handi.jpg"
+  },
+  {
+    "name": "Vegetable Chatapata",
+    "price": "240",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vegetable_chatapata.jpg"
+  },
+  {
+    "name": "Vegetable Angaray",
+    "price": "240",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vegetable_angaray.jpg"
+  },
+  {
+    "name": "Babycorn Masala",
+    "price": "250",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/babycorn_masala.jpg"
+  },
+  {
+    "name": "Vegetable Bhoona Masala",
+    "price": "250",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vegetable_bhoona_masala.jpg"
+  },
+  {
+    "name": "Methi Malai Mutter",
+    "price": "260",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/methi_malai_mutter.jpg"
+  },
+  {
+    "name": "Vegetable Kheema Masala",
+    "price": "270",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vegetable_kheema_masala.jpg"
+  },
+  {
+    "name": "Malai Kofta",
+    "price": "280",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/malai_kofta.jpg"
+  },
+  {
+    "name": "Palak Paneer",
+    "price": "245",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/palak_paneer.jpg"
+  },
+  {
+    "name": "Paneer Mutter",
+    "price": "245",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_mutter.jpg"
+  },
+  {
+    "name": "Paneer Tawa Masala",
+    "price": "245",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_tawa_masala.jpg"
+  },
+  {
+    "name": "Paneer Lajawab",
+    "price": "245",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_lajawab.jpg"
+  },
+  {
+    "name": "Paneer Burji",
+    "price": "260",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/mutter_paneer_burji.jpg"
+  },
+  {
+    "name": "Paneer Butter Masala",
+    "price": "260",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_butter_masala.jpg"
+  },
+  {
+    "name": "Paneer Tikka Masala",
+    "price": "260",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_tikka.png"
+  },
+  {
+    "name": "Paneer Burji Masala",
+    "price": "290",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_burji_masala.jpg"
+  },
+  {
+    "name": "Vegetable Kadhai",
+    "price": "240",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vegetable_kadhai.jpg"
+  },
+  {
+    "name": "Babycorn Kadhai",
+    "price": "240",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/babycorn_kadhai.jpg"
+  },
+  {
+    "name": "Paneer Kadhai",
+    "price": "270",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_kadhai.jpg"
+  },
+  {
+    "name": "Kaju Kadhai",
+    "price": "280",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/kaju_kadhai.jpg"
+  },
+  {
+    "name": "Kaju Masala / Curry",
+    "price": "270",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/kaju_masala___curry.jpg"
+  },
+  {
+    "name": "Kaju Kolhapuri",
+    "price": "270",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/kaju_kolhapuri.jpg"
+  },
+  {
+    "name": "Kaju Makhanwala",
+    "price": "290",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/kaju_makhanwala.jpg"
+  },
+  {
+    "name": "Kaju Hydrabadi",
+    "price": "290",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/kaju_hydrabadi.jpg"
+  },
+  {
+    "name": "Kaju Methi Masala",
+    "price": "290",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/kaju_methi_masala.jpg"
+  },
+  {
+    "name": "Kaju Paneer Masala",
+    "price": "290",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/kaju_paneer_masala.jpg"
+  },
+  {
+    "name": "Dal Fry",
+    "price": "140",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/dal_fry.jpg"
+  },
+  {
+    "name": "Dal Tadka",
+    "price": "150",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/dal_tadka.jpg"
+  },
+  {
+    "name": "Dal Kolhapuri",
+    "price": "160",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/dal_kolhapuri.jpg"
+  },
+  {
+    "name": "Dal Palak",
+    "price": "170",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/dal_palak.jpg"
+  },
+  {
+    "name": "Dal Mathi",
+    "price": "170",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/dal_mathi.jpg"
+  },
+  {
+    "name": "Butter Dal Fry",
+    "price": "180",
+    "category": "Main Course (Veg)",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/butter_dal_fry.jpg"
+  },
+  {
+    "name": "Curd",
+    "price": "50",
+    "category": "Beverages & Salads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/curd_rice.jpg"
+  },
+  {
+    "name": "Butter Milk",
+    "price": "50",
+    "category": "Beverages & Salads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/butter_milk.jpg"
+  },
+  {
+    "name": "Masala Butter Milk",
+    "price": "60",
+    "category": "Beverages & Salads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/masala_butter_milk.jpg"
+  },
+  {
+    "name": "Mix Vegetable Raitha",
+    "price": "60",
+    "category": "Beverages & Salads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/mix_vegetable_raitha.jpg"
+  },
+  {
+    "name": "Green Salad",
+    "price": "80",
+    "category": "Beverages & Salads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/green_salad.jpg"
+  },
+  {
+    "name": "Chicken Banjara Masala",
+    "price": "310",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_banjara_masala.jpg"
+  },
+  {
+    "name": "Murg Salan Masala",
+    "price": "310",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/murg_salan_masala.jpg"
+  },
+  {
+    "name": "Murg Lahsuni",
+    "price": "310",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/murg_lahsuni.jpg"
+  },
+  {
+    "name": "Murg Methi",
+    "price": "310",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/murg_methi.jpg"
+  },
+  {
+    "name": "Murg Lazeez",
+    "price": "310",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/murg_lazeez.jpg"
+  },
+  {
+    "name": "Murg Phadi Masala",
+    "price": "310",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/murg_phadi_masala.jpg"
+  },
+  {
+    "name": "Murg Bhoona",
+    "price": "310",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/murg_bhoona.jpg"
+  },
+  {
+    "name": "Badami Murg Pista",
+    "price": "310",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/badami_murg_pista.jpg"
+  },
+  {
+    "name": "Mutton Bhoona",
+    "price": "380",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/mutton_bhoona.jpg"
+  },
+  {
+    "name": "Mutton Sagwala",
+    "price": "380",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/mutton_sagwala.jpg"
+  },
+  {
+    "name": "Murg Matka Handi (Half / Full)",
+    "price": "600 / 1200",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/murg_matka_handi__half___full_.jpg"
+  },
+  {
+    "name": "Chicken Maratha / Kolhapuri",
+    "price": "285",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_maratha___kolhapuri.jpg"
+  },
+  {
+    "name": "Chicken Hydrabadi",
+    "price": "285",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_hydrabadi.jpg"
+  },
+  {
+    "name": "Chicken Masala / Curry",
+    "price": "285",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_masala___curry.jpg"
+  },
+  {
+    "name": "Chicken Handi",
+    "price": "285",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_handi.jpg"
+  },
+  {
+    "name": "Chicken Rogan Josh",
+    "price": "285",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_rogan_josh.jpg"
+  },
+  {
+    "name": "Chicken Tikka Masala",
+    "price": "295",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_tikka_masala.jpg"
+  },
+  {
+    "name": "Butter Chicken",
+    "price": "295",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/butter_chicken.png"
+  },
+  {
+    "name": "Murg Massulam",
+    "price": "295",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/murg_massulam.jpg"
+  },
+  {
+    "name": "Chicken Tangadi Masala (2 Pieces)",
+    "price": "325",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_tangadi_masala__2_pieces_.jpg"
+  },
+  {
+    "name": "Half Chicken",
+    "price": "490",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/half_chicken.jpg"
+  },
+  {
+    "name": "Murg Mussalam Half",
+    "price": "490",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/murg_mussalam_half.jpg"
+  },
+  {
+    "name": "Butter Chicken Half",
+    "price": "490",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/butter_chicken.png"
+  },
+  {
+    "name": "Full Chicken",
+    "price": "980",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/full_chicken.jpg"
+  },
+  {
+    "name": "Murg Mussalam Full",
+    "price": "980",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/murg_mussalam_full.jpg"
+  },
+  {
+    "name": "Butter Chicken Full",
+    "price": "980",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/butter_chicken.png"
+  },
+  {
+    "name": "Mutton Masala",
+    "price": "345",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/mutton_masala.jpg"
+  },
+  {
+    "name": "Mutton Maratha / Kolhapuri",
+    "price": "345",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/mutton_maratha___kolhapuri.jpg"
+  },
+  {
+    "name": "Mutton Rogan Josh",
+    "price": "345",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/mutton_rogan_josh.jpg"
+  },
+  {
+    "name": "Mutton Handi",
+    "price": "345",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/mutton_handi.jpg"
+  },
+  {
+    "name": "Mutton Khema Masala",
+    "price": "370",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/mutton_khema_masala.jpg"
+  },
+  {
+    "name": "Boiled Egg",
+    "price": "45",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/boiled_egg.jpg"
+  },
+  {
+    "name": "Egg Omlette",
+    "price": "65",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_omlette.jpg"
+  },
+  {
+    "name": "Egg Burji",
+    "price": "65",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_burji.jpg"
+  },
+  {
+    "name": "Egg Half Fry",
+    "price": "70",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_half_fry.jpg"
+  },
+  {
+    "name": "Egg Masala / Curry",
+    "price": "140",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_masala___curry.jpg"
+  },
+  {
+    "name": "Egg Kolhapuri",
+    "price": "150",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_kolhapuri.jpg"
+  },
+  {
+    "name": "Egg Hydrabadi",
+    "price": "150",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_hydrabadi.jpg"
+  },
+  {
+    "name": "Egg Makhanwala",
+    "price": "160",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_makhanwala.jpg"
+  },
+  {
+    "name": "Egg Nawabi",
+    "price": "160",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_nawabi.jpg"
+  },
+  {
+    "name": "Egg Burji Masala",
+    "price": "160",
+    "category": "Main Course (Non-Veg)",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_burji_masala.jpg"
+  },
+  {
+    "name": "Roti",
+    "price": "20",
+    "category": "Breads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/roti.jpg"
+  },
+  {
+    "name": "Butter Roti",
+    "price": "25",
+    "category": "Breads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/butter_roti.jpg"
+  },
+  {
+    "name": "Kulcha",
+    "price": "30",
+    "category": "Breads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/kulcha.jpg"
+  },
+  {
+    "name": "Butter Kulcha",
+    "price": "35",
+    "category": "Breads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/butter_kulcha.jpg"
+  },
+  {
+    "name": "Naan",
+    "price": "40",
+    "category": "Breads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/naan.jpg"
+  },
+  {
+    "name": "Butter Naan",
+    "price": "45",
+    "category": "Breads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/butter_naan.jpg"
+  },
+  {
+    "name": "Paper Roti",
+    "price": "55",
+    "category": "Breads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/roti.jpg"
+  },
+  {
+    "name": "Tandoori Lachha Parotha",
+    "price": "60",
+    "category": "Breads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/tandoori_lachha_parotha.jpg"
+  },
+  {
+    "name": "Garlic Naan",
+    "price": "80",
+    "category": "Breads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/garlic_naan.jpg"
+  },
+  {
+    "name": "Butter Garlic Naan",
+    "price": "100",
+    "category": "Breads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/naan.jpg"
+  },
+  {
+    "name": "Chilly Garlic Naan",
+    "price": "120",
+    "category": "Breads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/naan.jpg"
+  },
+  {
+    "name": "Butter Garlic Chilly Naan",
+    "price": "130",
+    "category": "Breads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/naan.jpg"
+  },
+  {
+    "name": "Cheese Garlic Chilly Naan",
+    "price": "140",
+    "category": "Breads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/naan.jpg"
+  },
+  {
+    "name": "Plain Rice",
+    "price": "100",
+    "category": "Biryani & Rice",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/plain_rice.jpg"
+  },
+  {
+    "name": "Jeera Rice",
+    "price": "140",
+    "category": "Biryani & Rice",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/jeera_rice.jpg"
+  },
+  {
+    "name": "Ghee Rice",
+    "price": "150",
+    "category": "Biryani & Rice",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/ghee_rice.jpg"
+  },
+  {
+    "name": "Curd Rice",
+    "price": "150",
+    "category": "Biryani & Rice",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/curd_rice.jpg"
+  },
+  {
+    "name": "Dal Khichdi",
+    "price": "160",
+    "category": "Biryani & Rice",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/dal_khichdi.jpg"
+  },
+  {
+    "name": "Dal Khichdi Kolhapuri",
+    "price": "170",
+    "category": "Biryani & Rice",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/dal_khichdi_kolhapuri.jpg"
+  },
+  {
+    "name": "Palak Rice",
+    "price": "170",
+    "category": "Biryani & Rice",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/palak_rice.jpg"
+  },
+  {
+    "name": "Veg Pulao",
+    "price": "180",
+    "category": "Biryani & Rice",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/veg_pulao.jpg"
+  },
+  {
+    "name": "Green Peas Pulao",
+    "price": "180",
+    "category": "Biryani & Rice",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/green_peas_pulao.jpg"
+  },
+  {
+    "name": "Onion Mint Pulao",
+    "price": "180",
+    "category": "Biryani & Rice",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/onion_mint_pulao.jpg"
+  },
+  {
+    "name": "Kaju Pulao",
+    "price": "220",
+    "category": "Biryani & Rice",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/kaju_pulao.jpg"
+  },
+  {
+    "name": "Veg Biryani",
+    "price": "220",
+    "category": "Biryani & Rice",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/veg_biryani.jpg"
+  },
+  {
+    "name": "Paneer Tikka Biryani",
+    "price": "230",
+    "category": "Biryani & Rice",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/paneer_tikka.png"
+  },
+  {
+    "name": "Egg Biryani",
+    "price": "195",
+    "category": "Biryani & Rice",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_biryani.jpg"
+  },
+  {
+    "name": "Chicken Biryani (3Pcs)",
+    "price": "240",
+    "category": "Biryani & Rice",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_biryani__3pcs_.jpg"
+  },
+  {
+    "name": "Chicken Biryani (5Pcs)",
+    "price": "270",
+    "category": "Biryani & Rice",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_biryani.png"
+  },
+  {
+    "name": "Chicken Tikka Biryani (5Pcs)",
+    "price": "290",
+    "category": "Biryani & Rice",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_tikka.jpg"
+  },
+  {
+    "name": "Mutton Biryani (3Pcs)",
+    "price": "310",
+    "category": "Biryani & Rice",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/mutton_biryani__3pcs_.jpg"
+  },
+  {
+    "name": "Mutton Biryani (5Pcs)",
+    "price": "360",
+    "category": "Biryani & Rice",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/mutton_biryani__5pcs_.jpg"
+  },
+  {
+    "name": "Jeera Fried Rice",
+    "price": "130",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/jeera_fried_rice.jpg"
+  },
+  {
+    "name": "Veg Fried Rice",
+    "price": "150",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/veg_fried_rice.jpg"
+  },
+  {
+    "name": "Garlic Fried Rice",
+    "price": "160",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/garlic_fried_rice.jpg"
+  },
+  {
+    "name": "Veg Schezwan Fried Rice",
+    "price": "165",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/veg_schezwan_fried_rice.jpg"
+  },
+  {
+    "name": "Kaju Fried Rice",
+    "price": "190",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/kaju_fried_rice.jpg"
+  },
+  {
+    "name": "Egg Fried Rice",
+    "price": "160",
+    "category": "Chinese",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_fried_rice.jpg"
+  },
+  {
+    "name": "Egg Schezwan Fried Rice",
+    "price": "170",
+    "category": "Chinese",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_schezwan_fried_rice.jpg"
+  },
+  {
+    "name": "Chicken Fried Rice",
+    "price": "190",
+    "category": "Chinese",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_fried_rice.jpg"
+  },
+  {
+    "name": "Chicken Schezwan Fried Rice",
+    "price": "195",
+    "category": "Chinese",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_schezwan_fried_rice.jpg"
+  },
+  {
+    "name": "Veg Hakka Noodles",
+    "price": "150",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/veg_hakka_noodles.jpg"
+  },
+  {
+    "name": "Veg Schezwan Noodles",
+    "price": "160",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/veg_schezwan_noodles.jpg"
+  },
+  {
+    "name": "Garlic Chilly Noodles",
+    "price": "165",
+    "category": "Chinese",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/garlic_chilly_noodles.jpg"
+  },
+  {
+    "name": "Egg Noodles",
+    "price": "150",
+    "category": "Chinese",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_noodles.jpg"
+  },
+  {
+    "name": "Egg Schezwan Noodles",
+    "price": "160",
+    "category": "Chinese",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/egg_schezwan_noodles.jpg"
+  },
+  {
+    "name": "Chicken Hakka Noodles",
+    "price": "190",
+    "category": "Chinese",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_hakka_noodles.jpg"
+  },
+  {
+    "name": "Chicken Schezwan Noodles",
+    "price": "190",
+    "category": "Chinese",
+    "is_veg": false,
+    "description": "",
+    "image_url": "/dishes/chicken_schezwan_noodles.jpg"
+  },
+  {
+    "name": "Mousse (Chocolate / Strawberry)",
+    "price": "45",
+    "category": "Desserts",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/mousse__chocolate___strawberry_.jpg"
+  },
+  {
+    "name": "Cold Pastry Slice",
+    "price": "45",
+    "category": "Desserts",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/cold_pastry_slice.jpg"
+  },
+  {
+    "name": "Hot Gulab Jamoon",
+    "price": "50",
+    "category": "Desserts",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/hot_gulab_jamoon.jpg"
+  },
+  {
+    "name": "Ice-Cream",
+    "price": "50",
+    "category": "Desserts",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/ice-cream.jpg"
+  },
+  {
+    "name": "Fruit Truffle",
+    "price": "70",
+    "category": "Desserts",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/fruit_truffle.jpg"
+  },
+  {
+    "name": "Sizzling Brownie",
+    "price": "150",
+    "category": "Desserts",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/sizzling_brownie.jpg"
+  },
+  {
+    "name": "Vanilla Milk Shake",
+    "price": "100",
+    "category": "Beverages & Salads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/vanilla_milk_shake.jpg"
+  },
+  {
+    "name": "Mango Milk Shake",
+    "price": "100",
+    "category": "Beverages & Salads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/mango_milk_shake.jpg"
+  },
+  {
+    "name": "Blue Lagoon",
+    "price": "120",
+    "category": "Beverages & Salads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/blue_lagoon.jpg"
+  },
+  {
+    "name": "Mojito",
+    "price": "150",
+    "category": "Beverages & Salads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/mojito.jpg"
+  },
+  {
+    "name": "Water Bottle (1Ltr)",
+    "price": "20",
+    "category": "Beverages & Salads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/water_bottle__1ltr_.jpg"
+  },
+  {
+    "name": "Soft Drink",
+    "price": "25",
+    "category": "Beverages & Salads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/soft_drink.jpg"
+  },
+  {
+    "name": "Fresh Lime Water (Sweet / Salt)",
+    "price": "25",
+    "category": "Beverages & Salads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/fresh_lime_water__sweet___salt_.jpg"
+  },
+  {
+    "name": "Fresh Lime Soda (Sweet / Salt)",
+    "price": "40",
+    "category": "Beverages & Salads",
+    "is_veg": true,
+    "description": "",
+    "image_url": "/dishes/fresh_lime_soda__sweet___salt_.jpg"
+  }
+]
