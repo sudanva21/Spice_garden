@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { usePageReveal } from '../hooks/useReveal';
 import AdminEvents from '../components/admin/AdminEvents';
 import { collection, getDocs, doc, updateDoc, addDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
@@ -128,8 +127,6 @@ export default function Admin() {
     const [editItem, setEditItem] = useState<any>(null);
     const [newItem, setNewItem] = useState<any>(null);
     const [searchQuery, setSearchQuery] = useState('');
-
-    usePageReveal();
 
     const handleLogout = () => {
         localStorage.removeItem('admin_token');
@@ -293,7 +290,7 @@ export default function Admin() {
                             <p style={{ color: 'var(--muted)', fontFamily: 'DM Sans' }}>Loading data...</p>
                         </div>
                     ) : (
-                        <div className="reveal" style={{ animation: 'fade-in .4s ease' }}>
+                        <div style={{ animation: 'fade-in .4s ease' }}>
                             {/* ═══ OVERVIEW TAB ═══ */}
                             {tab === 'Overview' && (
                                 <div>

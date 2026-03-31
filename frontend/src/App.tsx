@@ -39,10 +39,11 @@ function ProtectedAdminRoute({ children }: { children: React.ReactNode }) {
 function Layout() {
     const loc = useLocation();
     const isAskAI = loc.pathname === '/ask-ai';
+    const isAdmin = loc.pathname.startsWith('/admin');
 
     return (
         <>
-            {!isAskAI && <Navbar />}
+            {!isAskAI && !isAdmin && <Navbar />}
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/menu" element={<Menu />} />
@@ -65,9 +66,9 @@ function Layout() {
                 <Route path="/admin" element={<ProtectedAdminRoute><Admin /></ProtectedAdminRoute>} />
                 <Route path="/profile" element={<Profile />} />
             </Routes>
-            {!isAskAI && <Footer />}
-            <StickyContact />
-            <ChatWidget />
+            {!isAskAI && !isAdmin && <Footer />}
+            {!isAdmin && <StickyContact />}
+            {!isAdmin && <ChatWidget />}
             <AuthModal />
         </>
     );
