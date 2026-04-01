@@ -44,8 +44,7 @@ export default function Home() {
                         Experience the finest Indian & Chinese cuisine at Spice Garden.
                         Fresh ingredients, rich spices, and a warm dining atmosphere await you.
                     </p>
-                    <div className="hero-buttons">
-                        <Link to="/book" className="btn btn-gold">Book a Table</Link>
+                    <div className="hero-buttons" style={{ justifyContent: 'center' }}>
                         <Link to="/menu" className="btn btn-outline">View Our Menu</Link>
                     </div>
                 </div>

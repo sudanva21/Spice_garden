@@ -4,7 +4,6 @@ const FOOTER_LINKS = [
     { label: 'Home', path: '/' },
     { label: 'Menu', path: '/menu' },
     { label: 'Gallery', path: '/gallery' },
-    { label: 'Book a Table', path: '/book' },
     { label: 'Order Online', path: '/menu' },
     { label: 'Contact', path: '/contact' },
     { label: 'About', path: '/about' },

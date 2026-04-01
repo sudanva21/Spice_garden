@@ -4,6 +4,7 @@ import { db } from '../lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { usePageReveal } from '../hooks/useReveal';
 import toast from 'react-hot-toast';
+import { useAuth } from '../context/AuthContext';
 
 declare global {
     interface Window {
@@ -24,8 +25,9 @@ function loadRazorpayScript() {
 
 export default function EventDetail() {
     usePageReveal();
-    const { id } = useParams();
+    const { id: routeId } = useParams();
     const navigate = useNavigate();
+    const { user, openAuthModal } = useAuth();
 
     const [event, setEvent] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -40,7 +42,7 @@ export default function EventDetail() {
     useEffect(() => {
         async function init() {
             try {
-                const docSnap = await getDoc(doc(db, 'events', id as string));
+                const docSnap = await getDoc(doc(db, 'events', routeId as string));
                 if (!docSnap.exists()) {
                     toast.error('Event not found');
                     navigate('/events');
@@ -55,11 +57,17 @@ export default function EventDetail() {
             }
         }
         init();
-    }, [id, navigate]);
+    }, [routeId, navigate]);
 
     const handleBooking = async (e: React.FormEvent) => {
         e.preventDefault();
         
+        if (!user) {
+            toast.error('Please login to book tickets', { id: 'payment' });
+            openAuthModal();
+            return;
+        }
+
         if (!attendeeName || !attendeeEmail || !attendeePhone || seats < 1) {
             toast.error('Please fill all fields correctly');
             return;
@@ -85,7 +93,8 @@ export default function EventDetail() {
                     seats,
                     attendeeName,
                     attendeeEmail,
-                    attendeePhone
+                    attendeePhone,
+                    userId: user.id
                 })
             });
             const orderData = await orderRes.json();

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { db } from '../lib/firebase';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 interface OrderItem {
     name: string;
@@ -43,19 +45,35 @@ export default function Profile() {
 
         const fetchProfileData = async () => {
             try {
-                // Fetch the fresh Firebase JWT for backend authorization
-                const { auth } = await import('../lib/firebase');
-                const token = await auth.currentUser?.getIdToken();
-
-                const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/users/${user.id}`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
+                // Fetch User's bookings
+                const q = query(
+                    collection(db, 'bookings'),
+                    where('user_id', '==', user.id)
+                );
+                const querySnapshot = await getDocs(q);
+                const bookingsData: any[] = [];
+                querySnapshot.forEach((doc) => {
+                    bookingsData.push({ id: doc.id, ...doc.data() });
                 });
-                if (!res.ok) throw new Error('Failed to fetch profile data');
-                const data = await res.json();
-                setOrders(data.orders || []);
-                setEventBookings(data.eventBookings || []);
+
+                // Sort descending locally to avoid index requirement
+                bookingsData.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+
+                const formattedBookings = bookingsData.map(b => ({
+                    id: b.id,
+                    created_at: b.created_at,
+                    ticket_count: b.seats || 1,
+                    total_amount: b.total_amount,
+                    payment_status: b.payment_status,
+                    events: {
+                        title: b.event_title || 'Unknown Event',
+                        event_date: b.event_date || new Date().toISOString(),
+                        image_url: 'https://images.unsplash.com/photo-1543722530-d2c3201371e7?w=500' // Use fallback cover
+                    }
+                }));
+
+                setEventBookings(formattedBookings);
+                setOrders([]); // Set pending food orders logic to empty for now
             } catch (err) {
                 console.error(err);
             } finally {

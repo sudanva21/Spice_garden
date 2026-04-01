@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../lib/firebase';
-import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { usePageReveal } from '../hooks/useReveal';
 import toast from 'react-hot-toast';
 import { SEOHead } from '../components/SEOHead';
@@ -16,9 +16,16 @@ export default function Events() {
     useEffect(() => {
         async function fetchEvents() {
             try {
-                const qs = await getDocs(query(collection(db, 'events'), where('status', '==', 'active'), orderBy('date', 'asc')));
-                setEvents(qs.docs.map(d => ({ id: d.id, ...d.data() })));
+                // Fetch all events (no composite index needed), then filter/sort client-side
+                const qs = await getDocs(collection(db, 'events'));
+                const allEvents = qs.docs.map(d => ({ id: d.id, ...d.data() }));
+                // Filter active only & sort by date ascending
+                const activeEvents = allEvents
+                    .filter((e: any) => e.status === 'active')
+                    .sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
+                setEvents(activeEvents);
             } catch (err: any) {
+                console.error('Events fetch error:', err);
                 toast.error('Failed to load events: ' + err.message);
             } finally {
                 setLoading(false);

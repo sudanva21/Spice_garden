@@ -1,17 +1,13 @@
 import { Router, Request, Response } from 'express';
 import crypto from 'crypto';
-import { createClient } from '@supabase/supabase-js';
+import { db } from '../db';
 import { Resend } from 'resend';
+import admin from 'firebase-admin';
 // Use require for packages without proper TS declarations
 const Razorpay = require('razorpay');
 const { jsPDF } = require('jspdf');
 
 const router = Router();
-
-const supabaseAdmin = createClient(
-  process.env.SUPABASE_URL as string,
-  process.env.SUPABASE_SERVICE_ROLE_KEY as string
-);
 
 function generateTicketEmail(booking: any, domain: string) {
   const formatedDate = new Date(booking.event_date).toLocaleString('en-IN', {
@@ -134,18 +130,18 @@ function generateTicketPDF(booking: any): string {
 }
 
 // GET /api/ticket/:bookingId.pdf
-router.get('/ticket/:bookingId.pdf', async (req: Request, res: Response) => {
+router.get('/ticket/:bookingId.pdf', async (req: Request, res: Response): Promise<any> => {
   try {
     const { bookingId } = req.params;
-    const { data: booking, error: fetchErr } = await supabaseAdmin
-      .from('event_bookings')
-      .select('*')
-      .eq('id', bookingId)
-      .single();
-
-    if (fetchErr || !booking) {
+    
+    // Fetch from Firebase
+    const docSnap = await db.collection('bookings').doc(bookingId as string).get();
+    
+    if (!docSnap.exists) {
       return res.status(404).send('Ticket not found');
     }
+    
+    const booking = { id: docSnap.id, ...docSnap.data() };
 
     const pdfBase64 = generateTicketPDF(booking);
     const pdfBuffer = Buffer.from(pdfBase64, 'base64');
@@ -162,22 +158,23 @@ router.get('/ticket/:bookingId.pdf', async (req: Request, res: Response) => {
 // POST /api/create-order
 router.post('/create-order', async (req: Request, res: Response) => {
   try {
-    const { eventId, seats, attendeeName, attendeeEmail, attendeePhone } = req.body;
+    const { eventId, seats, attendeeName, attendeeEmail, attendeePhone, userId } = req.body;
 
-    // 1. Fetch event
-    const { data: event, error: eventErr } = await supabaseAdmin
-      .from('events')
-      .select('*')
-      .eq('id', eventId)
-      .eq('status', 'active')
-      .single();
+    // 1. Fetch event from Firebase
+    const eventDoc = await db.collection('events').doc(eventId).get();
 
-    if (eventErr || !event) {
-      return res.status(400).json({ success: false, error: 'Event not found or inactive' });
+    if (!eventDoc.exists) {
+      return res.status(400).json({ success: false, error: 'Event not found' });
+    }
+    
+    const event = { id: eventDoc.id, ...eventDoc.data() } as any;
+
+    if (event.status !== 'active') {
+       return res.status(400).json({ success: false, error: 'Event is not active' });
     }
 
     // 2. Validate capacity
-    if ((event.capacity - event.booked_seats) < seats) {
+    if ((event.capacity - (event.booked_seats || 0)) < seats) {
       return res.status(400).json({ success: false, error: 'Not enough seats available' });
     }
 
@@ -192,11 +189,8 @@ router.post('/create-order', async (req: Request, res: Response) => {
       // Razorpay not configured — create booking directly for testing
       console.log('[DEV] Razorpay keys not set. Creating test booking without payment.');
 
-      const bookingId = crypto.randomUUID();
-      const { error: insertErr } = await supabaseAdmin
-        .from('event_bookings')
-        .insert({
-          id: bookingId,
+      const newBookingRef = db.collection('bookings').doc();
+      const bookingData = {
           event_id: event.id,
           event_title: event.title,
           event_date: event.date,
@@ -204,19 +198,21 @@ router.post('/create-order', async (req: Request, res: Response) => {
           attendee_name: attendeeName,
           attendee_email: attendeeEmail,
           attendee_phone: attendeePhone,
+          user_id: userId || 'guest',
           seats,
           total_amount: amount / 100,
-          razorpay_order_id: 'test_' + crypto.randomUUID(),
-          payment_status: 'pending'
-        });
-
-      if (insertErr) throw insertErr;
+          razorpay_order_id: 'test_' + newBookingRef.id,
+          payment_status: 'pending',
+          created_at: new Date().toISOString()
+      };
+      
+      await newBookingRef.set(bookingData);
 
       return res.status(200).json({
         success: true,
         data: {
           orderId: 'test_order_' + Date.now(),
-          bookingId: bookingId,
+          bookingId: newBookingRef.id,
           amount,
           keyId: 'rzp_test_placeholder',
           testMode: true
@@ -229,12 +225,9 @@ router.post('/create-order', async (req: Request, res: Response) => {
     const receipt = crypto.randomUUID();
     const order = await razorpay.orders.create({ amount, currency: 'INR', receipt });
 
-    // 5. Insert pending booking
-    const bookingId = crypto.randomUUID();
-    const { error: insertErr } = await supabaseAdmin
-      .from('event_bookings')
-      .insert({
-        id: bookingId,
+    // 5. Insert pending booking to Firebase
+    const newBookingRef = db.collection('bookings').doc();
+    const bookingData = {
         event_id: event.id,
         event_title: event.title,
         event_date: event.date,
@@ -242,23 +235,25 @@ router.post('/create-order', async (req: Request, res: Response) => {
         attendee_name: attendeeName,
         attendee_email: attendeeEmail,
         attendee_phone: attendeePhone,
+        user_id: userId || 'guest',
         seats,
         total_amount: amount / 100,
         razorpay_order_id: order.id,
-        payment_status: 'pending'
-      });
-
-    if (insertErr) throw insertErr;
+        payment_status: 'pending',
+        created_at: new Date().toISOString()
+    };
+    await newBookingRef.set(bookingData);
 
     return res.status(200).json({
       success: true,
       data: {
         orderId: order.id,
-        bookingId: bookingId,
+        bookingId: newBookingRef.id,
         amount,
         keyId: rzpKeyId
       }
     });
+
   } catch (error: any) {
     console.error('Create Order Error:', error);
     return res.status(500).json({ success: false, error: error.message });
@@ -287,36 +282,29 @@ router.post('/verify-payment', async (req: Request, res: Response) => {
       }
     }
 
-    // 2. Fetch booking
-    const { data: booking, error: fetchErr } = await supabaseAdmin
-      .from('event_bookings')
-      .select('*')
-      .eq('id', bookingId)
-      .single();
+    // 2. Fetch booking from Firebase
+    const bookingRef = db.collection('bookings').doc(bookingId);
+    const bookingSnap = await bookingRef.get();
 
-    if (fetchErr || !booking) throw new Error('Booking not found');
+    if (!bookingSnap.exists) throw new Error('Booking not found');
+    const booking = { id: bookingSnap.id, ...bookingSnap.data() } as any;
+
     if (booking.payment_status !== 'pending') {
       return res.status(409).json({ success: false, error: 'Booking is not pending' });
     }
 
-    // 3. Update booking to paid
-    const { error: updateErr } = await supabaseAdmin
-      .from('event_bookings')
-      .update({ payment_status: 'paid', razorpay_payment_id: razorpayPaymentId || 'test_payment' })
-      .eq('id', bookingId);
-
-    if (updateErr) throw updateErr;
-
-    // 4. Increment booked seats
-    const { error: rpcErr } = await supabaseAdmin.rpc('increment_booked_seats', {
-      p_event_id: booking.event_id,
-      p_amount: booking.seats
+    // 3. Update booking to paid (using a batch or transaction is better, but this works)
+    await bookingRef.update({
+        payment_status: 'paid', 
+        razorpay_payment_id: razorpayPaymentId || 'test_payment',
+        updated_at: new Date().toISOString()
     });
 
-    if (rpcErr) {
-      console.error('RPC increment error:', rpcErr);
-      // Non-fatal — continue with email
-    }
+    // 4. Increment booked seats safely via transaction or FieldValue
+    const eventRef = db.collection('events').doc(booking.event_id);
+    await eventRef.update({
+        booked_seats: admin.firestore.FieldValue.increment(booking.seats)
+    });
 
     // 5. Send email via Resend (if configured)
     const resendKey = process.env.RESEND_API_KEY;

@@ -1,13 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getBlogPost } from '../api';
+import { MOCK_BLOGS } from './Blog';
 
 export default function BlogPost() {
     const { slug } = useParams<{ slug: string }>();
     const [post, setPost] = useState<any>(null);
 
     useEffect(() => {
-        if (slug) getBlogPost(slug).then(r => setPost(r.data.post)).catch(() => { });
+        if (slug) {
+            getBlogPost(slug).then(r => {
+                const apiPost = r.data.post;
+                if (apiPost) {
+                    setPost(apiPost);
+                } else {
+                    setPost(MOCK_BLOGS.find(b => b.slug === slug) || null);
+                }
+            }).catch(() => { 
+                setPost(MOCK_BLOGS.find(b => b.slug === slug) || null);
+            });
+        }
     }, [slug]);
 
     if (!post) return <div className="loading" style={{ paddingTop: 120 }}>Loading...</div>;

@@ -6,7 +6,6 @@ import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
 
 // Routes
-import apiRoutes from './routes/api';
 import paymentRoutes from './routes/payment';
 
 dotenv.config();
@@ -68,9 +67,7 @@ app.get('/health', (req, res) => {
 // Admin Dashboard static route (if we serve HTML for the admin)
 app.use('/admin', express.static('src/admin'));
 
-// API Routes
-app.use('/api/v1', apiRoutes);
-
+// API Routes removed
 // Payment Routes (for local development — replaces Vercel serverless functions)
 app.use('/api', paymentRoutes);
 
@@ -90,3 +87,6 @@ export default app;
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
+
+// touch
+// touch 2

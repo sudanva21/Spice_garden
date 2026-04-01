@@ -84,7 +84,6 @@ export default function Navbar() {
                     Sign in with Google
                 </button>
             )}
-            <Link to="/book" onClick={() => setMobileOpen(false)} className="btn btn-gold" style={{ padding: '12px 28px', fontSize: '.85rem' }}>Book a Table</Link>
         </div>
     );
 
